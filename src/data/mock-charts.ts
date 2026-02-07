@@ -1,0 +1,91 @@
+import type { DonutChartData, BarChartData } from "@/types/dashboard";
+
+export const mockDonutCharts: DonutChartData[] = [
+  {
+    id: "donut-1",
+    title: "Chart name",
+    subtitle: "23,989 units",
+    centerValue: "23,989",
+    centerLabel: "Units",
+    segments: [
+      { name: "Chat", value: 8396, fill: "var(--chart-1)" },
+      { name: "Voice", value: 4798, fill: "var(--chart-2)" },
+      { name: "Voice", value: 3599, fill: "var(--chart-3)" },
+      { name: "Chat", value: 2399, fill: "var(--chart-4)" },
+      { name: "Voice", value: 1439, fill: "var(--chart-5)" },
+      { name: "Chat", value: 960, fill: "var(--chart-6)" },
+      { name: "Voice", value: 720, fill: "var(--chart-7)" },
+      { name: "Voice", value: 480, fill: "var(--chart-8)" },
+      { name: "X more", value: 1198, fill: "var(--chart-9)" },
+    ],
+  },
+  {
+    id: "donut-2",
+    title: "Chart name",
+    subtitle: "23,989 units",
+    centerValue: "23,989",
+    centerLabel: "Units",
+    segments: [
+      { name: "Chat", value: 8396, fill: "var(--chart-1)" },
+      { name: "Voice", value: 4798, fill: "var(--chart-2)" },
+      { name: "Voice", value: 3599, fill: "var(--chart-3)" },
+      { name: "Chat", value: 2399, fill: "var(--chart-4)" },
+      { name: "Voice", value: 1439, fill: "var(--chart-5)" },
+      { name: "Chat", value: 960, fill: "var(--chart-6)" },
+      { name: "Voice", value: 720, fill: "var(--chart-7)" },
+      { name: "Voice", value: 480, fill: "var(--chart-8)" },
+      { name: "X more", value: 1198, fill: "var(--chart-9)" },
+    ],
+  },
+];
+
+export const mockBarCharts: BarChartData[] = [
+  {
+    id: "bar-1",
+    title: "Chart name",
+    subtitle: "23,989 units",
+    categories: [
+      { key: "chat", label: "Chat", color: "var(--chart-1)" },
+      { key: "voice1", label: "Voice", color: "var(--chart-2)" },
+      { key: "voice2", label: "Voice", color: "var(--chart-3)" },
+      { key: "chat2", label: "Chat", color: "var(--chart-4)" },
+      { key: "voice3", label: "Voice", color: "var(--chart-5)" },
+      { key: "voice4", label: "Voice", color: "var(--chart-6)" },
+      { key: "chat3", label: "Chat", color: "var(--chart-7)" },
+      { key: "voice5", label: "Voice", color: "var(--chart-8)" },
+      { key: "xMore", label: "X more", color: "var(--chart-9)" },
+    ],
+    data: [
+      { month: "Jan", chat: 220, voice1: 150, voice2: 80, chat2: 40, voice3: 30, voice4: 20, chat3: 15, voice5: 10, xMore: 5 },
+      { month: "Feb", chat: 180, voice1: 120, voice2: 90, chat2: 50, voice3: 40, voice4: 25, chat3: 20, voice5: 15, xMore: 10 },
+      { month: "Mar", chat: 250, voice1: 170, voice2: 100, chat2: 60, voice3: 35, voice4: 30, chat3: 25, voice5: 12, xMore: 8 },
+      { month: "Apr", chat: 200, voice1: 140, voice2: 85, chat2: 45, voice3: 30, voice4: 22, chat3: 18, voice5: 10, xMore: 6 },
+      { month: "May", chat: 230, voice1: 160, voice2: 95, chat2: 55, voice3: 38, voice4: 28, chat3: 22, voice5: 14, xMore: 9 },
+      { month: "Jun", chat: 260, voice1: 180, voice2: 110, chat2: 65, voice3: 42, voice4: 35, chat3: 28, voice5: 18, xMore: 12 },
+    ],
+  },
+  {
+    id: "bar-2",
+    title: "Chart name",
+    subtitle: "23,989 units",
+    categories: [
+      { key: "chat", label: "Chat", color: "var(--chart-1)" },
+      { key: "voice1", label: "Voice", color: "var(--chart-2)" },
+      { key: "voice2", label: "Voice", color: "var(--chart-3)" },
+      { key: "chat2", label: "Chat", color: "var(--chart-4)" },
+      { key: "voice3", label: "Voice", color: "var(--chart-5)" },
+      { key: "voice4", label: "Voice", color: "var(--chart-6)" },
+      { key: "chat3", label: "Chat", color: "var(--chart-7)" },
+      { key: "voice5", label: "Voice", color: "var(--chart-8)" },
+      { key: "xMore", label: "X more", color: "var(--chart-9)" },
+    ],
+    data: [
+      { month: "Jan", chat: 220, voice1: 150, voice2: 80, chat2: 40, voice3: 30, voice4: 20, chat3: 15, voice5: 10, xMore: 5 },
+      { month: "Feb", chat: 180, voice1: 120, voice2: 90, chat2: 50, voice3: 40, voice4: 25, chat3: 20, voice5: 15, xMore: 10 },
+      { month: "Mar", chat: 250, voice1: 170, voice2: 100, chat2: 60, voice3: 35, voice4: 30, chat3: 25, voice5: 12, xMore: 8 },
+      { month: "Apr", chat: 200, voice1: 140, voice2: 85, chat2: 45, voice3: 30, voice4: 22, chat3: 18, voice5: 10, xMore: 6 },
+      { month: "May", chat: 230, voice1: 160, voice2: 95, chat2: 55, voice3: 38, voice4: 28, chat3: 22, voice5: 14, xMore: 9 },
+      { month: "Jun", chat: 260, voice1: 180, voice2: 110, chat2: 65, voice3: 42, voice4: 35, chat3: 28, voice5: 18, xMore: 12 },
+    ],
+  },
+];

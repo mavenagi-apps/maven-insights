@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.figma.com)",
+      "mcp__claude_ai_Figma__get_design_context",
+      "Bash(find:*)",
+      "mcp__claude_ai_Figma__get_screenshot",
+      "mcp__claude_ai_Figma__get_metadata",
+      "Bash(python3:*)",
+      "WebSearch",
+      "WebFetch(domain:ui.shadcn.com)",
+      "WebFetch(domain:v3.shadcn.com)",
+      "Bash(ls:*)",
+      "Bash(pnpm create next-app@latest:*)",
+      "Bash(node --version:*)",
+      "Bash(npm --version:*)",
+      "Bash(corepack enable:*)",
+      "Bash(npm install:*)",
+      "Bash(pnpm install:*)",
+      "Bash(printf:*)",
+      "Bash(pnpm dlx shadcn@latest init:*)",
+      "Bash(pnpm dlx shadcn@latest add:*)",
+      "Bash(pnpm add:*)",
+      "Bash(pnpm build:*)",
+      "Bash(curl:*)",
+      "Bash(pkill:*)",
+      "Bash(npx tsc:*)",
+      "Bash(vercel --version:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ]
+  }
+}
