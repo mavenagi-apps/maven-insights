@@ -90,16 +90,16 @@
   --trend-positive: #22c55e;
   --trend-negative: #ef4444;
 
-  /* Chart colors matching Figma donut/bar segments */
-  --chart-1: #7c3aed;
-  --chart-2: #a78bfa;
-  --chart-3: #c4b5fd;
-  --chart-4: #06b6d4;
-  --chart-5: #67e8f9;
-  --chart-6: #2dd4bf;
-  --chart-7: #a3e635;
-  --chart-8: #fb923c;
-  --chart-9: #f472b6;
+  /* Chart colors - purple monochrome palette */
+  --chart-1: #6d28d9;
+  --chart-2: #8b5cf6;
+  --chart-3: #a78bfa;
+  --chart-4: #c4b5fd;
+  --chart-5: #ddd6fe;
+  --chart-6: #7c3aed;
+  --chart-7: #9333ea;
+  --chart-8: #a855f7;
+  --chart-9: #e9d5ff;
 
   /* Sidebar */
   --sidebar: #f7f5f4;

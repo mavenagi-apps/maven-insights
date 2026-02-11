@@ -11,10 +11,12 @@ export const ViewByOption = {
 export type ViewByOption = (typeof ViewByOption)[keyof typeof ViewByOption];
 
 export const InsightsTab = {
-  IMPACT: "impact",
-  CUSTOMERS: "customers",
-  QUALITY: "quality",
-  TEAM: "team",
+  SALES: "sales",
+  MARKETING: "marketing",
+  CX: "cx",
+  SOLUTIONS: "solutions",
+  PRODUCT: "product",
+  ENGINEERING: "engineering",
 } as const;
 export type InsightsTab = (typeof InsightsTab)[keyof typeof InsightsTab];
 

@@ -1,49 +1,70 @@
 "use client";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ImpactTab } from "./impact-tab/impact-tab";
+import { useState } from "react";
+import { SalesTab } from "./sales-tab";
+
+const TABS = [
+  { value: "sales", label: "Sales" },
+  { value: "marketing", label: "Marketing" },
+  { value: "cx", label: "CX" },
+  { value: "solutions", label: "Solutions" },
+  { value: "prodeng", label: "Prod/Eng" },
+] as const;
+
+type TabValue = (typeof TABS)[number]["value"];
 
 export function InsightsTabs() {
+  const [activeTab, setActiveTab] = useState<TabValue>("sales");
+
   return (
-    <Tabs defaultValue="impact" className="w-full">
-      <TabsList className="h-auto w-full justify-start gap-1 rounded-none border-b border-border-subtle bg-transparent p-0 px-6">
-        <TabsTrigger
-          value="impact"
-          className="rounded-none border-b-2 border-transparent px-3 pb-2 pt-2 text-sm font-medium text-muted-foreground data-[state=active]:border-brand-primary data-[state=active]:text-brand-primary data-[state=active]:shadow-none"
-        >
-          Impact
-        </TabsTrigger>
-        <TabsTrigger
-          value="customers"
-          className="rounded-none border-b-2 border-transparent px-3 pb-2 pt-2 text-sm font-medium text-muted-foreground data-[state=active]:border-brand-primary data-[state=active]:text-brand-primary data-[state=active]:shadow-none"
-        >
-          Customers
-        </TabsTrigger>
-        <TabsTrigger
-          value="quality"
-          className="rounded-none border-b-2 border-transparent px-3 pb-2 pt-2 text-sm font-medium text-muted-foreground data-[state=active]:border-brand-primary data-[state=active]:text-brand-primary data-[state=active]:shadow-none"
-        >
-          Quality
-        </TabsTrigger>
-        <TabsTrigger
-          value="team"
-          className="rounded-none border-b-2 border-transparent px-3 pb-2 pt-2 text-sm font-medium text-muted-foreground data-[state=active]:border-brand-primary data-[state=active]:text-brand-primary data-[state=active]:shadow-none"
-        >
-          Team
-        </TabsTrigger>
-      </TabsList>
-      <TabsContent value="impact" className="mt-0">
-        <ImpactTab />
-      </TabsContent>
-      <TabsContent value="customers" className="mt-0 p-10">
-        <p className="text-muted-foreground">Customers tab coming soon...</p>
-      </TabsContent>
-      <TabsContent value="quality" className="mt-0 p-10">
-        <p className="text-muted-foreground">Quality tab coming soon...</p>
-      </TabsContent>
-      <TabsContent value="team" className="mt-0 p-10">
-        <p className="text-muted-foreground">Team tab coming soon...</p>
-      </TabsContent>
-    </Tabs>
+    <div className="w-full">
+      {/* Tab bar */}
+      <div className="border-b border-[#e5e5e5] px-10">
+        <nav className="flex gap-8" aria-label="Tabs">
+          {TABS.map((tab) => {
+            const isActive = activeTab === tab.value;
+            return (
+              <button
+                key={tab.value}
+                onClick={() => setActiveTab(tab.value)}
+                className={`relative pb-3 text-[16px] font-medium transition-colors ${
+                  isActive
+                    ? "text-[#5c2de8]"
+                    : "text-[#6b7280] hover:text-[#1d1c1b]"
+                }`}
+              >
+                {tab.label}
+                {isActive && (
+                  <span className="absolute bottom-0 left-0 right-0 h-[3px] rounded-full bg-[#5c2de8]" />
+                )}
+              </button>
+            );
+          })}
+        </nav>
+      </div>
+
+      {/* Tab content */}
+      {activeTab === "sales" && <SalesTab />}
+      {activeTab === "marketing" && (
+        <div className="p-10">
+          <p className="text-[#6b7280]">Marketing tab coming soon...</p>
+        </div>
+      )}
+      {activeTab === "cx" && (
+        <div className="p-10">
+          <p className="text-[#6b7280]">CX tab coming soon...</p>
+        </div>
+      )}
+      {activeTab === "solutions" && (
+        <div className="p-10">
+          <p className="text-[#6b7280]">Solutions tab coming soon...</p>
+        </div>
+      )}
+      {activeTab === "prodeng" && (
+        <div className="p-10">
+          <p className="text-[#6b7280]">Prod/Eng tab coming soon...</p>
+        </div>
+      )}
+    </div>
   );
 }

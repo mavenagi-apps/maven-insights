@@ -1,5 +1,6 @@
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
+import { InsightsTabProvider } from "@/components/insights-tab-context";
 
 export default function DashboardLayout({
   children,
@@ -7,11 +8,13 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <SidebarProvider defaultOpen>
-      <AppSidebar />
-      <SidebarInset className="overflow-auto">
-        {children}
-      </SidebarInset>
-    </SidebarProvider>
+    <InsightsTabProvider>
+      <SidebarProvider defaultOpen>
+        <AppSidebar />
+        <SidebarInset className="overflow-auto">
+          {children}
+        </SidebarInset>
+      </SidebarProvider>
+    </InsightsTabProvider>
   );
 }
