@@ -55,14 +55,14 @@ export function AiInsight({
     <div className={cn("flex flex-col gap-2 px-6 pb-1", className)}>
       <div className="flex items-start gap-2">
         <Sparkles className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" />
-        <p className="text-sm italic text-muted-foreground">{children}</p>
+        <p className="text-sm text-foreground"><span className="font-semibold">Insight: </span>{children}</p>
       </div>
 
       {suggestion && linearTeam && (
-        <div className="flex items-start gap-2 ml-5.5">
+        <div className="flex items-start gap-2">
           <Lightbulb className="mt-0.5 h-3.5 w-3.5 shrink-0 text-amber-500" />
           <div className="flex flex-1 items-start gap-2">
-            <p className="text-sm text-foreground">{suggestion}</p>
+            <p className="text-sm text-foreground"><span className="font-semibold">Suggestion: </span>{suggestion}</p>
             {status === "idle" && (
               <Button
                 variant="outline"
