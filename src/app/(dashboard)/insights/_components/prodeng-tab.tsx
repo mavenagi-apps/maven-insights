@@ -14,6 +14,7 @@ import { FeaturesBugsTeamChart } from "./prodeng-tab/features-bugs-team-chart";
 import { NewBugsTeamChart } from "./prodeng-tab/new-bugs-team-chart";
 import { UptimeStatus } from "./prodeng-tab/uptime-status";
 import { IncidentChart } from "./prodeng-tab/incident-chart";
+import { AiInsight } from "@/components/ai-insight";
 import { cn } from "@/lib/utils";
 
 const PRODENG_TABS = [
@@ -72,6 +73,13 @@ function GeneralContent() {
       <ConsumptionChart />
       <FeaturesBugsTeamChart />
       <NewBugsTeamChart />
+      <AiInsight
+        className="px-0"
+        suggestion="Investigate the Week 3 January spike in critical and major incidents to identify root causes and prevent recurrence"
+        linearTeam="PRODENG"
+      >
+        All components maintain 100% uptime, but incident volume spiked to 4 in Week 3 January (including 1 critical) — a pattern worth investigating before it impacts uptime targets.
+      </AiInsight>
       <UptimeStatus />
       <IncidentChart />
     </div>

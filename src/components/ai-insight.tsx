@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Sparkles, Lightbulb, ExternalLink, Check, Loader2 } from "lucide-react";
+import { ExternalLink, Check, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { LinearTeam, type LinearTeamKey } from "@/lib/linear";
@@ -62,14 +62,10 @@ export function AiInsight({
       />
 
       <div className="flex flex-col gap-2">
-        <div className="flex items-start gap-2">
-          <Sparkles className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" />
-          <p className="text-sm text-foreground"><span className="font-semibold">Insight: </span>{children}</p>
-        </div>
+        <p className="text-sm text-foreground"><span className="font-semibold">Insight: </span>{children}</p>
 
         {suggestion && linearTeam && (
           <div className="flex items-start gap-2">
-            <Lightbulb className="mt-0.5 h-3.5 w-3.5 shrink-0 text-amber-500" />
             <div className="flex flex-1 items-start gap-2">
               <p className="text-sm text-foreground"><span className="font-semibold">Suggestion: </span>{suggestion}</p>
               {status === "idle" && (
