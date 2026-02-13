@@ -71,7 +71,7 @@ export function AppSidebar() {
 
         {/* Company */}
         <SidebarGroup>
-          <SidebarGroupLabel>Company</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-sidebar-foreground font-semibold">Company</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {COMPANY_TABS.map((value) => (
@@ -91,7 +91,7 @@ export function AppSidebar() {
 
         {/* Teams */}
         <SidebarGroup>
-          <SidebarGroupLabel>Teams</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-sidebar-foreground font-semibold">Team</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {TEAM_TABS.map((value) => (

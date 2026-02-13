@@ -6,6 +6,7 @@ const STATUS_OPTIONS = [
   { value: "green", label: "Green", dot: "bg-emerald-500" },
   { value: "yellow", label: "Yellow", dot: "bg-amber-500" },
   { value: "red", label: "Red", dot: "bg-red-500" },
+  { value: "no_score", label: "No score", dot: "bg-gray-300" },
 ] as const;
 
 const TEAM_OPTIONS = [
