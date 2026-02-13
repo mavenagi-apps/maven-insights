@@ -73,15 +73,18 @@ function GeneralContent() {
       <ConsumptionChart />
       <FeaturesBugsTeamChart />
       <NewBugsTeamChart />
-      <AiInsight
-        className="px-0"
-        suggestion="Investigate the Week 3 January spike in critical and major incidents to identify root causes and prevent recurrence"
-        linearTeam="PRODENG"
-      >
-        All components maintain 100% uptime, but incident volume spiked to 4 in Week 3 January (including 1 critical) — a pattern worth investigating before it impacts uptime targets.
-      </AiInsight>
-      <UptimeStatus />
-      <IncidentChart />
+      <div className="flex flex-col gap-4">
+        <h2 className="text-lg font-semibold text-foreground">System Status</h2>
+        <AiInsight
+          className="px-0"
+          suggestion="Investigate the Week 3 January spike in critical and major incidents to identify root causes and prevent recurrence"
+          linearTeam="PRODENG"
+        >
+          All components maintain 100% uptime, but incident volume spiked to 4 in Week 3 January (including 1 critical) — a pattern worth investigating before it impacts uptime targets.
+        </AiInsight>
+        <UptimeStatus />
+        <IncidentChart />
+      </div>
     </div>
   );
 }
