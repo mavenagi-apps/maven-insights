@@ -34,7 +34,7 @@ function formatTime(timestamp: string): string {
 }
 
 const DATE_HEADINGS: Record<string, string> = {
-  "2026-02-13": "Friday, Feb 13",
+  "2026-02-13": "Today — Friday, Feb 13",
   "2026-02-12": "Yesterday — Thursday, Feb 12",
   "2026-02-11": "Wednesday, Feb 11",
   "2026-02-10": "Tuesday, Feb 10",
