@@ -52,53 +52,63 @@ export function AiInsight({
   };
 
   return (
-    <div className={cn("flex flex-col gap-2 px-6 pb-1", className)}>
-      <div className="flex items-start gap-2">
-        <Sparkles className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" />
-        <p className="text-sm text-foreground"><span className="font-semibold">Insight: </span>{children}</p>
-      </div>
+    <div className={cn("flex gap-3 px-6 pb-1", className)}>
+      {/* Rainbow gradient bar */}
+      <div
+        className="w-1 shrink-0 rounded-full"
+        style={{
+          background: "linear-gradient(to bottom, #06b6d4, #8b5cf6, #a855f7)",
+        }}
+      />
 
-      {suggestion && linearTeam && (
+      <div className="flex flex-col gap-2">
         <div className="flex items-start gap-2">
-          <Lightbulb className="mt-0.5 h-3.5 w-3.5 shrink-0 text-amber-500" />
-          <div className="flex flex-1 items-start gap-2">
-            <p className="text-sm text-foreground"><span className="font-semibold">Suggestion: </span>{suggestion}</p>
-            {status === "idle" && (
-              <Button
-                variant="outline"
-                size="sm"
-                className="shrink-0 h-6 gap-1 px-2 text-xs font-normal"
-                onClick={handleCreateLinear}
-              >
-                Create Linear
-              </Button>
-            )}
-            {status === "loading" && (
-              <Button
-                variant="outline"
-                size="sm"
-                className="shrink-0 h-6 gap-1 px-2 text-xs font-normal"
-                disabled
-              >
-                <Loader2 className="h-3 w-3 animate-spin" />
-                Creating...
-              </Button>
-            )}
-            {status === "created" && issueUrl && (
-              <a
-                href={issueUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex shrink-0 items-center gap-1 rounded-md border border-emerald-200 bg-emerald-50 px-2 h-6 text-xs text-emerald-700"
-              >
-                <Check className="h-3 w-3" />
-                Created
-                <ExternalLink className="h-3 w-3" />
-              </a>
-            )}
-          </div>
+          <Sparkles className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" />
+          <p className="text-sm text-foreground"><span className="font-semibold">Insight: </span>{children}</p>
         </div>
-      )}
+
+        {suggestion && linearTeam && (
+          <div className="flex items-start gap-2">
+            <Lightbulb className="mt-0.5 h-3.5 w-3.5 shrink-0 text-amber-500" />
+            <div className="flex flex-1 items-start gap-2">
+              <p className="text-sm text-foreground"><span className="font-semibold">Suggestion: </span>{suggestion}</p>
+              {status === "idle" && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="shrink-0 h-6 gap-1 px-2 text-xs font-normal"
+                  onClick={handleCreateLinear}
+                >
+                  Create Linear
+                </Button>
+              )}
+              {status === "loading" && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="shrink-0 h-6 gap-1 px-2 text-xs font-normal"
+                  disabled
+                >
+                  <Loader2 className="h-3 w-3 animate-spin" />
+                  Creating...
+                </Button>
+              )}
+              {status === "created" && issueUrl && (
+                <a
+                  href={issueUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex shrink-0 items-center gap-1 rounded-md border border-emerald-200 bg-emerald-50 px-2 h-6 text-xs text-emerald-700"
+                >
+                  <Check className="h-3 w-3" />
+                  Created
+                  <ExternalLink className="h-3 w-3" />
+                </a>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

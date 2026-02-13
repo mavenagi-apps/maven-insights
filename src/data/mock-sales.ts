@@ -7,15 +7,18 @@ export const salesOkrs: Okr[] = [
     percentComplete: 22,
   },
   {
-    name: "Deliver in $80M pipeline built",
-    dueDate: "2026-01-31",
-    percentComplete: 50,
-  },
-  {
     name: "Achieve 90% win rate",
     dueDate: "2026-03-31",
     percentComplete: 70,
     status: "green",
+  },
+];
+
+export const sdrOkrs: Okr[] = [
+  {
+    name: "Deliver in $80M pipeline built",
+    dueDate: "2026-01-31",
+    percentComplete: 50,
   },
 ];
 

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { OkrSection } from "@/components/okr-section";
-import { salesOkrs } from "@/data/mock-sales";
+import { salesOkrs, sdrOkrs } from "@/data/mock-sales";
 import { OpenDealsTable } from "./sales-tab/open-deals-table";
 import { SalesForecastTable } from "./sales-tab/sales-forecast-table";
 import { SdrPipelineTable } from "./marketing-tab/sdr-pipeline-table";
@@ -64,6 +64,13 @@ function SalesContent() {
 function SdrContent() {
   return (
     <div className="flex flex-col gap-6">
+      <OkrSection
+        okrs={sdrOkrs}
+        chartId="sdr-okrs"
+        insight="Pipeline delivery is at 50% against the $80M target with the Jan 31 deadline approaching — final push needed to close the gap."
+        suggestion="Focus SDR outbound efforts on the highest-converting segments to maximize pipeline before the Jan 31 deadline"
+        linearTeam="SALES"
+      />
       <SdrPipelineTable />
       <SdrOpsTable />
     </div>

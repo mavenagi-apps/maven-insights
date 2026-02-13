@@ -7,7 +7,6 @@ import { MarketingTab } from "./marketing-tab";
 import { CxTab } from "./cx-tab";
 import { SolutionsTab } from "./solutions-tab";
 import { ProdEngTab } from "./prodeng-tab";
-import { FluxTab } from "./flux-tab";
 
 export function InsightsTabContent() {
   const { activeTab } = useInsightsTab();
@@ -20,7 +19,6 @@ export function InsightsTabContent() {
       {activeTab === "cx" && <CxTab />}
       {activeTab === "solutions" && <SolutionsTab />}
       {activeTab === "prodeng" && <ProdEngTab />}
-      {activeTab === "flux" && <FluxTab />}
     </div>
   );
 }

@@ -3,7 +3,7 @@
 import { Pin } from "lucide-react";
 import { useInsightsTab } from "@/components/insights-tab-context";
 import { OkrSection } from "@/components/okr-section";
-import { salesOkrs } from "@/data/mock-sales";
+import { salesOkrs, sdrOkrs } from "@/data/mock-sales";
 import { marketingOkrs } from "@/data/mock-marketing";
 import { cxOkrs, cxCustomerHealthOkrs, cxRenewalsOkrs } from "@/data/mock-cx";
 import { solutionsOkrs } from "@/data/mock-solutions";
@@ -54,6 +54,9 @@ function ProdEngOkrs() {
 function FluxOkrs() {
   return <OkrSection okrs={fluxOkrs} chartId="flux-okrs" />;
 }
+function SdrOkrsView() {
+  return <OkrSection okrs={sdrOkrs} chartId="sdr-okrs" />;
+}
 
 const CHART_REGISTRY: Record<string, { component: React.ComponentType; label: string }> = {
   "sales-okrs": { component: SalesOkrs, label: "Sales OKRs" },
@@ -64,6 +67,7 @@ const CHART_REGISTRY: Record<string, { component: React.ComponentType; label: st
   "solutions-okrs": { component: SolutionsOkrs, label: "Solutions OKRs" },
   "prodeng-okrs": { component: ProdEngOkrs, label: "Prod/Eng OKRs" },
   "flux-okrs": { component: FluxOkrs, label: "Flux OKRs" },
+  "sdr-okrs": { component: SdrOkrsView, label: "SDR OKRs" },
   "open-deals": { component: OpenDealsTable, label: "Open Deals" },
   "sales-forecast": { component: SalesForecastTable, label: "Sales Forecast" },
   "pipe-gen-attainment": { component: PipeGenAttainmentTable, label: "Pipe Gen Attainment" },

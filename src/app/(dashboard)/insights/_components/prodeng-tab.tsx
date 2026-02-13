@@ -8,6 +8,7 @@ import {
   forgeOkrs,
   athenaOkrs,
 } from "@/data/mock-prodeng";
+import { fluxOkrs } from "@/data/mock-flux";
 import { ConsumptionChart } from "./prodeng-tab/consumption-chart";
 import { FeaturesBugsTeamChart } from "./prodeng-tab/features-bugs-team-chart";
 import { NewBugsTeamChart } from "./prodeng-tab/new-bugs-team-chart";
@@ -18,6 +19,7 @@ import { cn } from "@/lib/utils";
 const PRODENG_TABS = [
   { value: "general", label: "General" },
   { value: "forge", label: "Forge" },
+  { value: "flux", label: "Flux" },
   { value: "helix", label: "Helix" },
   { value: "athena", label: "Athena" },
 ] as const;
@@ -50,6 +52,7 @@ export function ProdEngTab() {
       {/* Tab content */}
       {activeSubTab === "general" && <GeneralContent />}
       {activeSubTab === "forge" && <ForgeContent />}
+      {activeSubTab === "flux" && <FluxContent />}
       {activeSubTab === "helix" && <HelixContent />}
       {activeSubTab === "athena" && <AthenaContent />}
     </div>
@@ -83,6 +86,20 @@ function ForgeContent() {
         chartId="prodeng-forge-okrs"
         insight="Email channel is leading at 40%, but Freshservice copilot is at 0% with the same Jan 31 deadline — immediate focus needed to avoid missing the target entirely."
         suggestion="Assign a dedicated engineer to the Freshservice copilot integration to unblock progress before the Jan 31 deadline"
+        linearTeam="PRODENG"
+      />
+    </div>
+  );
+}
+
+function FluxContent() {
+  return (
+    <div className="flex flex-col gap-6">
+      <OkrSection
+        okrs={fluxOkrs}
+        chartId="flux-okrs"
+        insight="Voice APIs lead at 75% but only 1 of 3 target partners is live — accelerating Papaya Pay and Thumbtack onboarding is critical to hitting the partner OKR before Q1 end."
+        suggestion="Schedule dedicated onboarding sprints with Papaya Pay and Thumbtack engineering teams this week to unblock voice integration milestones"
         linearTeam="PRODENG"
       />
     </div>

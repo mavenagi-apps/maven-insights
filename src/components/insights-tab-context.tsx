@@ -5,7 +5,6 @@ import { createContext, useCallback, useContext, useState } from "react";
 const TABS = [
   { value: "myview", label: "My View" },
   { value: "prodeng", label: "Prod/Eng" },
-  { value: "flux", label: "Flux" },
   { value: "solutions", label: "Solutions" },
   { value: "cx", label: "CX" },
   { value: "sales", label: "Sales" },
