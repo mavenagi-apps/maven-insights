@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/sidebar";
 
 const PERSONAL_TABS = ["myview"] as const;
-const COMPANY_TABS = ["okrs"] as const;
+const COMPANY_TABS = ["okrs", "pulse"] as const;
 const TEAM_TABS = ["prodeng", "solutions", "cx", "sales", "marketing"] as const;
 
 export function AppSidebar() {

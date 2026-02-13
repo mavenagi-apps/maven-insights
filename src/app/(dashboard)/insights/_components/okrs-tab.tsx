@@ -48,7 +48,6 @@ export function OkrsTab() {
           ...sub,
           okrs: hasStatusFilter
             ? sub.okrs.filter((okr) => {
-                if (!okr.status && activeStatuses.has("no_score")) return true;
                 const status = okr.status ?? getOkrStatus(okr.percentComplete);
                 return activeStatuses.has(status);
               })

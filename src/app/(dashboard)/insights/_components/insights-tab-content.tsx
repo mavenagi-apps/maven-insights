@@ -8,6 +8,7 @@ import { CxTab } from "./cx-tab";
 import { SolutionsTab } from "./solutions-tab";
 import { ProdEngTab } from "./prodeng-tab";
 import { OkrsTab } from "./okrs-tab";
+import { PulseTab } from "./pulse-tab";
 
 export function InsightsTabContent() {
   const { activeTab } = useInsightsTab();
@@ -16,6 +17,7 @@ export function InsightsTabContent() {
     <div className="w-full">
       {activeTab === "myview" && <MyViewTab />}
       {activeTab === "okrs" && <OkrsTab />}
+      {activeTab === "pulse" && <PulseTab />}
       {activeTab === "sales" && <SalesTab />}
       {activeTab === "marketing" && <MarketingTab />}
       {activeTab === "cx" && <CxTab />}
