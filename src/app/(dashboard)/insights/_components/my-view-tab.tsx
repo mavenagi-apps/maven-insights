@@ -5,9 +5,10 @@ import { useInsightsTab } from "@/components/insights-tab-context";
 import { OkrSection } from "@/components/okr-section";
 import { salesOkrs } from "@/data/mock-sales";
 import { marketingOkrs } from "@/data/mock-marketing";
-import { cxOkrs } from "@/data/mock-cx";
+import { cxOkrs, cxCustomerHealthOkrs, cxRenewalsOkrs } from "@/data/mock-cx";
 import { solutionsOkrs } from "@/data/mock-solutions";
 import { prodEngOkrs } from "@/data/mock-prodeng";
+import { fluxOkrs } from "@/data/mock-flux";
 import { OpenDealsTable } from "./sales-tab/open-deals-table";
 import { SalesForecastTable } from "./sales-tab/sales-forecast-table";
 import { PipeGenAttainmentTable } from "./marketing-tab/pipe-gen-attainment-table";
@@ -38,19 +39,31 @@ function MarketingOkrs() {
 function CxOkrs() {
   return <OkrSection okrs={cxOkrs} chartId="cx-okrs" />;
 }
+function CxCustomerHealthOkrs() {
+  return <OkrSection okrs={cxCustomerHealthOkrs} chartId="cx-customer-health-okrs" />;
+}
+function CxRenewalsOkrs() {
+  return <OkrSection okrs={cxRenewalsOkrs} chartId="cx-renewals-okrs" />;
+}
 function SolutionsOkrs() {
   return <OkrSection okrs={solutionsOkrs} chartId="solutions-okrs" />;
 }
 function ProdEngOkrs() {
   return <OkrSection okrs={prodEngOkrs} chartId="prodeng-okrs" />;
 }
+function FluxOkrs() {
+  return <OkrSection okrs={fluxOkrs} chartId="flux-okrs" />;
+}
 
 const CHART_REGISTRY: Record<string, { component: React.ComponentType; label: string }> = {
   "sales-okrs": { component: SalesOkrs, label: "Sales OKRs" },
   "marketing-okrs": { component: MarketingOkrs, label: "Marketing OKRs" },
   "cx-okrs": { component: CxOkrs, label: "CX OKRs" },
+  "cx-customer-health-okrs": { component: CxCustomerHealthOkrs, label: "CX Customer Health OKRs" },
+  "cx-renewals-okrs": { component: CxRenewalsOkrs, label: "CX Renewals OKRs" },
   "solutions-okrs": { component: SolutionsOkrs, label: "Solutions OKRs" },
   "prodeng-okrs": { component: ProdEngOkrs, label: "Prod/Eng OKRs" },
+  "flux-okrs": { component: FluxOkrs, label: "Flux OKRs" },
   "open-deals": { component: OpenDealsTable, label: "Open Deals" },
   "sales-forecast": { component: SalesForecastTable, label: "Sales Forecast" },
   "pipe-gen-attainment": { component: PipeGenAttainmentTable, label: "Pipe Gen Attainment" },

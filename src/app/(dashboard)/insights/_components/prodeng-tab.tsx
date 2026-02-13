@@ -66,6 +66,9 @@ function GeneralContent() {
         suggestion="Prioritize tuning the resolution engine on the top 10 most-common enterprise journey types to rapidly close the gap toward 80%"
         linearTeam="PRODENG"
       />
+      <ConsumptionChart />
+      <FeaturesBugsTeamChart />
+      <NewBugsTeamChart />
       <UptimeStatus />
       <IncidentChart />
     </div>
@@ -92,13 +95,10 @@ function HelixContent() {
       <OkrSection
         okrs={helixOkrs}
         chartId="prodeng-helix-okrs"
-        insight="Voice APIs are 75% complete and leading other initiatives, while Agent Ops at 22% is the biggest risk — consider reallocating sprint capacity to close the gap before Q1 end."
-        suggestion="Move one engineer from Voice APIs (75% done) to Agent Ops (22%) to ensure the lowest-progress OKR gets unblocked before Q1 end"
+        insight="Agent Ops at 22% is the biggest risk across Helix OKRs — consider reallocating sprint capacity to close the gap before Q1 end."
+        suggestion="Focus sprint capacity on Agent Ops (22%) to ensure the lowest-progress OKR gets unblocked before Q1 end"
         linearTeam="PRODENG"
       />
-      <ConsumptionChart />
-      <FeaturesBugsTeamChart />
-      <NewBugsTeamChart />
     </div>
   );
 }

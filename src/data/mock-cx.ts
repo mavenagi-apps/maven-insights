@@ -18,6 +18,27 @@ export const cxOkrs: Okr[] = [
   },
 ];
 
+export const cxCustomerHealthOkrs: Okr[] = [
+  {
+    name: "Strengthen customer success and drive sustainable growth through proactive engagement",
+    dueDate: "2026-03-31",
+    percentComplete: 38,
+  },
+];
+
+export const cxRenewalsOkrs: Okr[] = [
+  {
+    name: "Expand consumption to 120% contracted consumption",
+    dueDate: "2026-03-31",
+    percentComplete: 70,
+  },
+  {
+    name: "Drive consumption expansion through 3 integrations in 30 days, 5 in 90 days",
+    dueDate: "2026-03-31",
+    percentComplete: 45,
+  },
+];
+
 // ---------------------------------------------------------------------------
 // Retention (Total only - top chart)
 // ---------------------------------------------------------------------------
