@@ -33,19 +33,16 @@ function formatTime(timestamp: string): string {
   });
 }
 
-function formatDateHeading(dateStr: string): string {
-  const date = new Date(dateStr);
-  const today = new Date("2026-02-13");
-  const yesterday = new Date("2026-02-12");
+const DATE_HEADINGS: Record<string, string> = {
+  "2026-02-13": "Friday, Feb 13",
+  "2026-02-12": "Yesterday — Thursday, Feb 12",
+  "2026-02-11": "Wednesday, Feb 11",
+  "2026-02-10": "Tuesday, Feb 10",
+  "2026-02-09": "Monday, Feb 9",
+};
 
-  if (date.toDateString() === today.toDateString()) return "Today — Friday, Feb 13";
-  if (date.toDateString() === yesterday.toDateString()) return "Yesterday — Thursday, Feb 12";
-
-  return date.toLocaleDateString("en-US", {
-    weekday: "long",
-    month: "short",
-    day: "numeric",
-  });
+function formatDateHeading(dateKey: string): string {
+  return DATE_HEADINGS[dateKey] ?? dateKey;
 }
 
 function groupByDate(entries: PulseEntry[]): Map<string, PulseEntry[]> {
@@ -162,7 +159,7 @@ export function PulseTab() {
           {[...grouped.entries()].map(([dateKey, entries]) => (
             <div key={dateKey} className="flex flex-col gap-1">
               <h2 className="text-sm font-semibold text-foreground mb-2">
-                {formatDateHeading(dateKey + "T00:00:00")}
+                {formatDateHeading(dateKey)}
               </h2>
 
               <div className="flex flex-col">
