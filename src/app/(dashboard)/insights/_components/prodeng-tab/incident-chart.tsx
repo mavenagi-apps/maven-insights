@@ -14,9 +14,9 @@ import {
 import { incidentData } from "@/data/mock-prodeng";
 
 const chartConfig = {
-  minor: { label: "Minor", color: "#7c3aed" },
+  minor: { label: "Minor", color: "#ddd6fe" },
   major: { label: "Major", color: "#a78bfa" },
-  critical: { label: "Critical", color: "#ddd6fe" },
+  critical: { label: "Critical", color: "#7c3aed" },
 } satisfies ChartConfig;
 
 export function IncidentChart() {
@@ -64,11 +64,13 @@ export function IncidentChart() {
               dataKey="minor"
               stackId="incidents"
               fill="var(--color-minor)"
+              radius={[4, 4, 0, 0]}
             />
             <Bar
               dataKey="major"
               stackId="incidents"
               fill="var(--color-major)"
+              radius={[4, 4, 0, 0]}
             />
             <Bar
               dataKey="critical"
