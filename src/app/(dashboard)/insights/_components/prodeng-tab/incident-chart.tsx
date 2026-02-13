@@ -1,18 +1,23 @@
 "use client";
 
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+import { Bar, BarChart, XAxis, YAxis } from "recharts";
 import { PinButton } from "@/components/pin-button";
 import { AiInsight } from "@/components/ai-insight";
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+  ChartLegend,
+  ChartLegendContent,
+  type ChartConfig,
+} from "@/components/ui/chart";
 import { incidentData } from "@/data/mock-prodeng";
+
+const chartConfig = {
+  minor: { label: "#00 - Minor", color: "#a78bfa" },
+  major: { label: "#01 - Major", color: "#fb923c" },
+  critical: { label: "#02 - Critical", color: "#93c5fd" },
+} satisfies ChartConfig;
 
 export function IncidentChart() {
   return (
@@ -31,71 +36,48 @@ export function IncidentChart() {
         Incidents spiked to 4 in week of Jan 26 (including 1 critical) after 2 stable weeks — investigate whether recent deployments contributed to the uptick.
       </AiInsight>
 
-      <div className="px-6 pb-6 pt-2">
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart
-            data={incidentData}
-            margin={{ top: 20, right: 20, left: 10, bottom: 5 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" vertical={false} />
+      <div className="px-6 pb-6 pt-4">
+        <ChartContainer config={chartConfig} className="h-[300px] w-full">
+          <BarChart data={incidentData} margin={{ left: 10 }}>
             <XAxis
               dataKey="week"
-              tick={{ fontSize: 12, fill: "hsl(var(--muted-foreground))" }}
-              axisLine={false}
               tickLine={false}
+              axisLine={false}
+              tickMargin={8}
             />
             <YAxis
-              tick={{ fontSize: 12, fill: "hsl(var(--muted-foreground))" }}
-              axisLine={false}
               tickLine={false}
+              axisLine={false}
+              tickMargin={8}
               allowDecimals={false}
               label={{
                 value: "Number of incidents",
                 angle: -90,
                 position: "insideLeft",
-                offset: 0,
-                style: {
-                  fontSize: 11,
-                  fill: "hsl(var(--muted-foreground))",
-                  textAnchor: "middle",
-                },
+                offset: -5,
+                style: { textAnchor: "middle", fontSize: 12 },
               }}
             />
-            <Tooltip
-              contentStyle={{
-                borderRadius: "8px",
-                border: "1px solid hsl(var(--border))",
-                backgroundColor: "hsl(var(--card))",
-                fontSize: "12px",
-              }}
-            />
-            <Legend
-              iconType="circle"
-              wrapperStyle={{ fontSize: "12px", paddingTop: "8px" }}
-            />
+            <ChartTooltip content={<ChartTooltipContent />} />
+            <ChartLegend content={<ChartLegendContent />} />
             <Bar
               dataKey="minor"
-              name="#00 - Minor"
               stackId="incidents"
-              fill="#a78bfa"
-              radius={[0, 0, 0, 0]}
+              fill="var(--color-minor)"
             />
             <Bar
               dataKey="major"
-              name="#01 - Major"
               stackId="incidents"
-              fill="#fb923c"
-              radius={[0, 0, 0, 0]}
+              fill="var(--color-major)"
             />
             <Bar
               dataKey="critical"
-              name="#02 - Critical"
               stackId="incidents"
-              fill="#93c5fd"
+              fill="var(--color-critical)"
               radius={[4, 4, 0, 0]}
             />
           </BarChart>
-        </ResponsiveContainer>
+        </ChartContainer>
       </div>
     </div>
   );

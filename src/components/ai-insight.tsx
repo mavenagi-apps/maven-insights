@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ExternalLink, Check, Loader2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Lightbulb, ExternalLink, Check, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { LinearTeam, type LinearTeamKey } from "@/lib/linear";
 
@@ -52,45 +51,42 @@ export function AiInsight({
   };
 
   return (
-    <div className={cn("flex gap-3 px-6 pb-1", className)}>
-      {/* Rainbow gradient bar */}
-      <div
-        className="w-1 shrink-0 rounded-full"
-        style={{
-          background: "linear-gradient(to bottom, #06b6d4, #8b5cf6, #a855f7)",
-        }}
-      />
+    <div className={cn("px-6 pb-1", className)}>
+      <div className="flex gap-3 rounded-xl bg-purple-50 px-4 py-3 border border-purple-100">
+        <Lightbulb className="mt-0.5 h-4 w-4 shrink-0 text-purple-500" />
 
-      <div className="flex flex-col gap-2">
-        <p className="text-sm text-foreground"><span className="font-semibold">Insight: </span>{children}</p>
+        <div className="flex flex-col gap-1.5">
+          <p className="text-sm text-foreground">{children}</p>
 
-        {suggestion && linearTeam && (
-          <div className="flex items-start gap-2">
-            <div className="flex flex-1 items-start gap-2">
-              <p className="text-sm text-foreground"><span className="font-semibold">Suggestion: </span>{suggestion}</p>
-              {status === "idle" && (
+          {suggestion && (
+            <div className="flex items-start gap-3">
+              <p className="text-sm text-muted-foreground">
+                <span className="mr-1">&rarr;</span>
+                {suggestion}
+              </p>
+              {linearTeam && status === "idle" && (
                 <button
                   onClick={handleCreateLinear}
-                  className="shrink-0 inline-flex items-center gap-1.5 h-6 px-2.5 text-xs font-medium text-purple-700 rounded-md border border-purple-200 bg-purple-50 transition-all hover:bg-purple-100 hover:border-purple-300 hover:shadow-sm active:scale-95"
+                  className="shrink-0 inline-flex items-center gap-1.5 h-6 px-2.5 text-xs font-medium text-white rounded-md bg-purple-600 transition-all hover:bg-purple-700 hover:shadow-sm active:scale-95"
                 >
                   Create Linear
                 </button>
               )}
-              {status === "loading" && (
+              {linearTeam && status === "loading" && (
                 <button
                   disabled
-                  className="shrink-0 inline-flex items-center gap-1.5 h-6 px-2.5 text-xs font-medium text-purple-400 rounded-md border border-purple-200 bg-purple-50"
+                  className="shrink-0 inline-flex items-center gap-1.5 h-6 px-2.5 text-xs font-medium text-white/70 rounded-md bg-purple-400"
                 >
                   <Loader2 className="h-3 w-3 animate-spin" />
                   Creating...
                 </button>
               )}
-              {status === "created" && issueUrl && (
+              {linearTeam && status === "created" && issueUrl && (
                 <a
                   href={issueUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex shrink-0 items-center gap-1 rounded-md border border-emerald-200 bg-emerald-50 px-2 h-6 text-xs text-emerald-700"
+                  className="inline-flex shrink-0 items-center gap-1 rounded-md bg-emerald-600 px-2.5 h-6 text-xs font-medium text-white"
                 >
                   <Check className="h-3 w-3" />
                   Created
@@ -98,8 +94,8 @@ export function AiInsight({
                 </a>
               )}
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );
