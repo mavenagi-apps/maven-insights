@@ -38,8 +38,8 @@ function formatDateHeading(dateStr: string): string {
   const today = new Date("2026-02-13");
   const yesterday = new Date("2026-02-12");
 
-  if (date.toDateString() === today.toDateString()) return "Today — Feb 13";
-  if (date.toDateString() === yesterday.toDateString()) return "Yesterday — Feb 12";
+  if (date.toDateString() === today.toDateString()) return "Today — Friday, Feb 13";
+  if (date.toDateString() === yesterday.toDateString()) return "Yesterday — Thursday, Feb 12";
 
   return date.toLocaleDateString("en-US", {
     weekday: "long",

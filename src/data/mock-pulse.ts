@@ -30,12 +30,12 @@ export interface PulseEntry {
 }
 
 export const pulseEntries: PulseEntry[] = [
-  // ── Feb 13 ──────────────────────────────────────────────────────────
+  // ── Friday, Feb 13 ──────────────────────────────────────────────────
   {
     id: "1",
     type: ActivityType.OKR_CHANGE,
     team: TeamKey.PRODENG,
-    title: "\"Deliver a seamless, high-confidence Agent Ops experience\" OKR moved to Yellow",
+    title: "\"Deliver a seamless, high-confidence Agent Ops experience\" OKR moved from Green to Yellow",
     timestamp: "2026-02-13T14:32:00",
   },
   {
@@ -56,7 +56,7 @@ export const pulseEntries: PulseEntry[] = [
     id: "4",
     type: ActivityType.OKR_CHANGE,
     team: TeamKey.CX,
-    title: "\"Expand consumption to 120% contracted consumption\" OKR moved to Green",
+    title: "\"Expand consumption to 120% contracted consumption\" OKR moved from Yellow to Green",
     timestamp: "2026-02-13T09:48:00",
   },
   {
@@ -67,7 +67,7 @@ export const pulseEntries: PulseEntry[] = [
     timestamp: "2026-02-13T09:20:00",
   },
 
-  // ── Feb 12 ──────────────────────────────────────────────────────────
+  // ── Thursday, Feb 12 ────────────────────────────────────────────────
   {
     id: "6",
     type: ActivityType.METRICS_CHANGE,
@@ -86,7 +86,7 @@ export const pulseEntries: PulseEntry[] = [
     id: "8",
     type: ActivityType.OKR_CHANGE,
     team: TeamKey.MARKETING,
-    title: "\"Establish Maven AGI as a recognized presence in the industry\" OKR still at 158% — exceeding target",
+    title: "\"Establish Maven AGI as a recognized presence in the industry\" OKR moved from Yellow to Green at 158%",
     timestamp: "2026-02-12T11:30:00",
   },
   {
@@ -100,11 +100,11 @@ export const pulseEntries: PulseEntry[] = [
     id: "10",
     type: ActivityType.OKR_CHANGE,
     team: TeamKey.SALES,
-    title: "\"Achieve 90% win rate\" OKR remains Green at 70%",
+    title: "\"$20M Total ARR\" OKR moved from Red to Yellow at 22%",
     timestamp: "2026-02-12T09:00:00",
   },
 
-  // ── Feb 11 ──────────────────────────────────────────────────────────
+  // ── Wednesday, Feb 11 ───────────────────────────────────────────────
   {
     id: "11",
     type: ActivityType.METRICS_CHANGE,
@@ -116,7 +116,7 @@ export const pulseEntries: PulseEntry[] = [
     id: "12",
     type: ActivityType.OKR_CHANGE,
     team: TeamKey.SOLUTIONS,
-    title: "\"Onboard 80% of customers in < 30 days\" OKR dropped to Red at 25%",
+    title: "\"Onboard 80% of customers in < 30 days\" OKR dropped from Yellow to Red at 25%",
     timestamp: "2026-02-11T13:20:00",
   },
   {
@@ -137,7 +137,7 @@ export const pulseEntries: PulseEntry[] = [
     id: "15",
     type: ActivityType.OKR_CHANGE,
     team: TeamKey.PRODENG,
-    title: "\"Freshservice copilot used by 1+ customer\" OKR still at 0% — Red status",
+    title: "\"[Launch] Capabilities\" OKR moved from Green to Yellow at 33%",
     timestamp: "2026-02-11T09:15:00",
   },
   {
@@ -148,7 +148,7 @@ export const pulseEntries: PulseEntry[] = [
     timestamp: "2026-02-11T08:50:00",
   },
 
-  // ── Feb 10 ──────────────────────────────────────────────────────────
+  // ── Tuesday, Feb 10 ─────────────────────────────────────────────────
   {
     id: "17",
     type: ActivityType.METRICS_CHANGE,
@@ -160,14 +160,14 @@ export const pulseEntries: PulseEntry[] = [
     id: "18",
     type: ActivityType.OKR_CHANGE,
     team: TeamKey.CX,
-    title: "\"Drive consumption expansion through 3 integrations\" OKR moved to Yellow at 45%",
+    title: "\"Drive consumption expansion through 3 integrations\" OKR moved from Green to Yellow at 45%",
     timestamp: "2026-02-10T14:30:00",
   },
   {
     id: "19",
     type: ActivityType.METRICS_CHANGE,
     team: TeamKey.PRODENG,
-    title: "Autonomous resolution rate at 37.7% — significantly below the 80% target",
+    title: "Autonomous resolution rate dropped from 42% to 37.7%",
     timestamp: "2026-02-10T12:15:00",
   },
   {
@@ -181,7 +181,7 @@ export const pulseEntries: PulseEntry[] = [
     id: "21",
     type: ActivityType.OKR_CHANGE,
     team: TeamKey.MARKETING,
-    title: "\"Generate 70% of annual direct leads at <$500 per lead\" OKR at 14% — Red status",
+    title: "\"Generate 70% of annual direct leads at <$500 per lead\" OKR dropped from Yellow to Red at 14%",
     timestamp: "2026-02-10T10:20:00",
   },
   {
@@ -191,18 +191,48 @@ export const pulseEntries: PulseEntry[] = [
     title: "Practice Better kicked off onboarding — recurring weekly implementation meetings scheduled",
     timestamp: "2026-02-10T09:30:00",
   },
+
+  // ── Monday, Feb 9 ───────────────────────────────────────────────────
   {
     id: "23",
     type: ActivityType.METRICS_CHANGE,
     team: TeamKey.CX,
-    title: "Retention rate held steady at 94% — above 90% target for Q1",
-    timestamp: "2026-02-10T09:00:00",
+    title: "Retention rate improved from 91% to 94% — above 90% target for Q1",
+    timestamp: "2026-02-09T15:30:00",
   },
   {
     id: "24",
     type: ActivityType.METRICS_CHANGE,
     team: TeamKey.MARKETING,
     title: "Content distribution reached 12K impressions this week — 3x prior week",
-    timestamp: "2026-02-10T08:30:00",
+    timestamp: "2026-02-09T14:10:00",
+  },
+  {
+    id: "25",
+    type: ActivityType.OKR_CHANGE,
+    team: TeamKey.PRODENG,
+    title: "\"LAND: Platform API (Inception)\" OKR moved from Green to Yellow at 45%",
+    timestamp: "2026-02-09T11:45:00",
+  },
+  {
+    id: "26",
+    type: ActivityType.METRICS_CHANGE,
+    team: TeamKey.SALES,
+    title: "Win rate climbed from 85% to 90% on latest closed deals",
+    timestamp: "2026-02-09T10:20:00",
+  },
+  {
+    id: "27",
+    type: ActivityType.OKR_CHANGE,
+    team: TeamKey.SOLUTIONS,
+    title: "\"120% prorated total consumption\" OKR moved from Yellow to Green at 114%",
+    timestamp: "2026-02-09T09:30:00",
+  },
+  {
+    id: "28",
+    type: ActivityType.METRICS_CHANGE,
+    team: TeamKey.PRODENG,
+    title: "Email consumption surged 15% week-over-week — now second highest surface",
+    timestamp: "2026-02-09T09:00:00",
   },
 ];
