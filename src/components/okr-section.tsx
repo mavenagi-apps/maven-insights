@@ -7,14 +7,14 @@ import type { LinearTeamKey } from "@/lib/linear";
 import type { Okr } from "@/types/okr";
 import { cn } from "@/lib/utils";
 
-const OkrStatus = {
+export const OkrStatus = {
   RED: "red",
   YELLOW: "yellow",
   GREEN: "green",
 } as const;
 type OkrStatus = (typeof OkrStatus)[keyof typeof OkrStatus];
 
-function getOkrStatus(percent: number): OkrStatus {
+export function getOkrStatus(percent: number): OkrStatus {
   if (percent < 40) return OkrStatus.RED;
   if (percent < 70) return OkrStatus.YELLOW;
   return OkrStatus.GREEN;
@@ -44,7 +44,7 @@ function formatDueDate(dateStr: string): string {
   });
 }
 
-function OkrTile({ okr }: { okr: Okr }) {
+export function OkrTile({ okr }: { okr: Okr }) {
   const status = okr.status ?? getOkrStatus(okr.percentComplete);
   const styles = statusStyles[status];
   // Cap the visual bar width at 100% for OKRs that exceed target

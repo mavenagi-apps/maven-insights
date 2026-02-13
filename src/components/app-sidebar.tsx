@@ -8,14 +8,22 @@ import {
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
+  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
+const PERSONAL_TABS = ["myview"] as const;
+const COMPANY_TABS = ["okrs"] as const;
+const TEAM_TABS = ["prodeng", "solutions", "cx", "sales", "marketing"] as const;
+
 export function AppSidebar() {
   const { activeTab, setActiveTab, tabs } = useInsightsTab();
+
+  const getTabLabel = (value: string) =>
+    tabs.find((t) => t.value === value)?.label ?? value;
 
   return (
     <Sidebar className="border-r border-border-subtle">
@@ -42,17 +50,58 @@ export function AppSidebar() {
       </SidebarHeader>
 
       <SidebarContent className="px-2">
+        {/* Personal */}
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
-              {tabs.map((tab) => (
-                <SidebarMenuItem key={tab.value}>
+              {PERSONAL_TABS.map((value) => (
+                <SidebarMenuItem key={value}>
                   <SidebarMenuButton
-                    isActive={activeTab === tab.value}
-                    onClick={() => setActiveTab(tab.value)}
+                    isActive={activeTab === value}
+                    onClick={() => setActiveTab(value)}
                     className="cursor-pointer"
                   >
-                    <span>{tab.label}</span>
+                    <span>{getTabLabel(value)}</span>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        {/* Company */}
+        <SidebarGroup>
+          <SidebarGroupLabel>Company</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {COMPANY_TABS.map((value) => (
+                <SidebarMenuItem key={value}>
+                  <SidebarMenuButton
+                    isActive={activeTab === value}
+                    onClick={() => setActiveTab(value)}
+                    className="cursor-pointer"
+                  >
+                    <span>{getTabLabel(value)}</span>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        {/* Teams */}
+        <SidebarGroup>
+          <SidebarGroupLabel>Teams</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {TEAM_TABS.map((value) => (
+                <SidebarMenuItem key={value}>
+                  <SidebarMenuButton
+                    isActive={activeTab === value}
+                    onClick={() => setActiveTab(value)}
+                    className="cursor-pointer"
+                  >
+                    <span>{getTabLabel(value)}</span>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
