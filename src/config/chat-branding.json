@@ -1,0 +1,12 @@
+{
+  "brandName": "Maven AGI",
+  "welcomeTitle": "Hi, I'm your Maven assistant",
+  "welcomeSubtitle": "Ask me anything about your dashboard metrics, OKRs, or team performance.",
+  "placeholder": "Ask Maven anything...",
+  "suggestedQuestions": [
+    "List all the Yellow Prod/Eng OKRs",
+    "Which customer onboardings are on track?",
+    "How does Maven's sales pipeline look?"
+  ],
+  "sidebarWidth": "420px"
+}
