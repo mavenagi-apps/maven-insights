@@ -10,7 +10,7 @@ export function ChatTrigger() {
   return (
     <Button
       onClick={openSidebar}
-      className="fixed bottom-6 right-6 z-40 h-12 gap-2 rounded-full !px-[35px] shadow-lg"
+      className="fixed bottom-6 right-6 z-40 h-12 gap-2 rounded-full !px-[35px] shadow-lg bg-[#7c3aed] hover:bg-[#7c3aed]/90"
       aria-label="Open chat"
     >
       <MessageSquare className="size-5 -scale-x-100" />
