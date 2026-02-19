@@ -5,27 +5,19 @@ interface PrebakedQA {
 
 const PREBAKED_QA: PrebakedQA[] = [
   {
-    keywords: ["yellow", "prod", "eng", "okr"],
-    response: `I found **7 Prod/Eng OKRs** currently flagged yellow across 5 teams. These are all behind their expected pace for Q1.
+    keywords: ["green", "prod", "eng", "okr"],
+    response: `There are **3 Prod/Eng OKRs** currently flagged green, all on track or ahead of schedule.
 
 ### General
-- **Achieve ≥ 80% autonomous resolution rate on complex enterprise journeys** — 37%, due Mar 31
-
-### Forge
-- **Email used by 3+ customers** — 40%, due Jan 31
+- **Maintain 100% all-up system uptime** — 100%, due Mar 31
 
 ### Flux
-- **Bring Voice to GA and accelerate commercial uptake** — 54%, due Mar 31
-
-### Helix
-- **[Launch] Segments** — 50%, due Mar 31
-- **[Launch] Instructions** — 50%, due Mar 31
+- **Enable Forge, Solutions, and Customers to fully own voice-surface integrations (Voice APIs)** — 75%, due Mar 31
 
 ### Athena
-- **LAND: Platform API (Inception)** — 45%, due Mar 31
-- **[DEMO] OnPrem used by 1+ customer (phase 1 complete)** — 40%, due Mar 31
+- **LAND: Events API (Dependency to enable proactive)** — 80%, due Mar 31
 
-The most urgent is Forge's "Email used by 3+ customers" — it's only at 40% and was already due January 31. The Athena and General OKRs are also worth watching since they're below 45%.`,
+All three are in great shape. System uptime is at 100%, and both Flux and Athena are well ahead of their expected pace for Q1.`,
   },
   {
     keywords: ["customer", "onboarding", "on track", "onboard"],
@@ -57,7 +49,7 @@ Enterprise is the largest segment at nearly half the total pipeline. Strategic f
 
 const FALLBACK_RESPONSE = `I don't have specific data for that question yet. Try asking me about:
 
-- **Yellow Prod/Eng OKRs** — which engineering objectives are at risk
+- **Green Prod/Eng OKRs** — which engineering objectives are on track
 - **Customer onboardings** — which customers are on track
 - **Sales pipeline** — pipeline breakdown by team
 
