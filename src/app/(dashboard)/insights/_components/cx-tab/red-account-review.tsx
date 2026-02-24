@@ -17,16 +17,22 @@ import { redCustomerDetails } from "@/data/red-customers-detail";
 import type { RedCustomerDetail } from "@/data/red-customers-detail";
 
 function statusBg(status: string): string {
+  // Red: blocked, needs action, at risk
   if (status === "Blocked") return "bg-[#fecaca]";
-  if (status === "In Review") return "bg-[#dbeafe]";
+  if (status === "Customer to Action") return "bg-[#fecaca]";
+  if (status === "Needs Information") return "bg-[#fecaca]";
+  // Yellow: in-flight / pending review
+  if (status === "In Review") return "bg-[#fef9c3]";
   if (status === "In Progress") return "bg-[#fef9c3]";
+  // Green: done
   if (status === "Closed Won") return "bg-[#dcfce7]";
-  if (status === "Customer to Action") return "bg-[#fed7aa]";
+  if (status === "Done") return "bg-[#dcfce7]";
   return "";
 }
 
 function priorityBg(priority: string): string {
   if (priority === "High") return "bg-[#fecaca]";
+  if (priority === "Medium") return "bg-[#fef9c3]";
   return "";
 }
 
@@ -280,10 +286,10 @@ export function RedAccountReview() {
         </span>
       </div>
 
+      <AnalysisCard customer={customer} />
       <CustomerOverviewTable customer={customer} />
       <GongCallsTable customer={customer} />
       <LinearIssuesTable customer={customer} />
-      <AnalysisCard customer={customer} />
     </div>
   );
 }
