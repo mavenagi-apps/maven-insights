@@ -9,11 +9,13 @@ import { RenewalsQ4Table } from "./cx-tab/renewals-q4-table";
 import { RenewalsQ1Table } from "./cx-tab/renewals-q1-table";
 import { MultiYearTable } from "./cx-tab/multi-year-table";
 import { RedCustomersTable } from "./cx-tab/red-customers-table";
+import { RedAccountReview } from "./cx-tab/red-account-review";
 import { cn } from "@/lib/utils";
 
 const CX_TABS = [
   { value: "customer-health", label: "Customer Health" },
   { value: "renewals", label: "Renewals" },
+  { value: "red-account-review", label: "Red Account Review" },
 ] as const;
 
 type CxTabValue = (typeof CX_TABS)[number]["value"];
@@ -44,6 +46,7 @@ export function CxTab() {
 
       {activeSubTab === "customer-health" && <CustomerHealthContent />}
       {activeSubTab === "renewals" && <RenewalsContent />}
+      {activeSubTab === "red-account-review" && <RedAccountReview />}
     </div>
   );
 }
