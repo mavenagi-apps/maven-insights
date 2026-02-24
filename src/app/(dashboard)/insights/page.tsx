@@ -1,5 +1,10 @@
+import { Suspense } from "react";
 import { InsightsContent } from "./insights-content";
 
 export default function InsightsPage() {
-  return <InsightsContent />;
+  return (
+    <Suspense>
+      <InsightsContent />
+    </Suspense>
+  );
 }

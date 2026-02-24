@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { OkrSection } from "@/components/okr-section";
 import { cxCustomerHealthOkrs, cxRenewalsOkrs } from "@/data/mock-cx";
 import { CustomerHealthChart } from "./cx-tab/customer-health-chart";
@@ -20,9 +21,30 @@ const CX_TABS = [
 
 type CxTabValue = (typeof CX_TABS)[number]["value"];
 
+const VALID_CX_TABS = new Set(CX_TABS.map((t) => t.value));
+
 export function CxTab() {
-  const [activeSubTab, setActiveSubTab] =
-    useState<CxTabValue>("customer-health");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const tabParam = searchParams.get("tab");
+  const activeSubTab: CxTabValue =
+    tabParam && VALID_CX_TABS.has(tabParam as CxTabValue)
+      ? (tabParam as CxTabValue)
+      : "customer-health";
+
+  const setActiveSubTab = useCallback(
+    (value: CxTabValue) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("tab", value);
+      // Clear customer sub-tab when leaving red-account-review
+      if (value !== "red-account-review") {
+        params.delete("sub-tab");
+      }
+      router.replace(`?${params.toString()}`, { scroll: false });
+    },
+    [router, searchParams]
+  );
 
   return (
     <div className="flex flex-col gap-6 px-10 pt-6 pb-10">

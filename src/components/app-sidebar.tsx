@@ -1,5 +1,7 @@
 "use client";
 
+import { useCallback } from "react";
+import { useRouter } from "next/navigation";
 import { ChevronsUpDown } from "lucide-react";
 import { MavenLogo } from "@/components/maven-logo";
 import { useInsightsTab } from "@/components/insights-tab-context";
@@ -20,10 +22,22 @@ const COMPANY_TABS = ["okrs", "pulse"] as const;
 const TEAM_TABS = ["prodeng", "solutions", "cx", "sales", "marketing"] as const;
 
 export function AppSidebar() {
+  const router = useRouter();
   const { activeTab, setActiveTab, tabs } = useInsightsTab();
 
   const getTabLabel = (value: string) =>
     tabs.find((t) => t.value === value)?.label ?? value;
+
+  const handleTabClick = useCallback(
+    (value: Parameters<typeof setActiveTab>[0]) => {
+      setActiveTab(value);
+      // Write top-level tab to URL; clear CX sub-params when leaving CX
+      const params = new URLSearchParams();
+      params.set("tab", value);
+      router.replace(`?${params.toString()}`, { scroll: false });
+    },
+    [router, setActiveTab]
+  );
 
   return (
     <Sidebar className="border-r border-border-subtle">
@@ -58,7 +72,7 @@ export function AppSidebar() {
                 <SidebarMenuItem key={value}>
                   <SidebarMenuButton
                     isActive={activeTab === value}
-                    onClick={() => setActiveTab(value)}
+                    onClick={() => handleTabClick(value)}
                     className="cursor-pointer"
                   >
                     <span>{getTabLabel(value)}</span>
@@ -78,7 +92,7 @@ export function AppSidebar() {
                 <SidebarMenuItem key={value}>
                   <SidebarMenuButton
                     isActive={activeTab === value}
-                    onClick={() => setActiveTab(value)}
+                    onClick={() => handleTabClick(value)}
                     className="cursor-pointer"
                   >
                     <span>{getTabLabel(value)}</span>
@@ -98,7 +112,7 @@ export function AppSidebar() {
                 <SidebarMenuItem key={value}>
                   <SidebarMenuButton
                     isActive={activeTab === value}
-                    onClick={() => setActiveTab(value)}
+                    onClick={() => handleTabClick(value)}
                     className="cursor-pointer"
                   >
                     <span>{getTabLabel(value)}</span>

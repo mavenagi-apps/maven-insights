@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { AlertTriangle, Download, Maximize2, SlidersHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PinButton } from "@/components/pin-button";
@@ -251,7 +252,21 @@ function AnalysisCard({ customer }: CustomerDetailProps) {
 }
 
 export function RedAccountReview() {
-  const [activeCustomer, setActiveCustomer] = useState(redCustomerDetails[0].id);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const subTabParam = searchParams.get("sub-tab");
+  const activeCustomer =
+    redCustomerDetails.find((c) => c.id === subTabParam)?.id ?? redCustomerDetails[0].id;
+
+  const setActiveCustomer = useCallback(
+    (id: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("sub-tab", id);
+      router.replace(`?${params.toString()}`, { scroll: false });
+    },
+    [router, searchParams]
+  );
 
   const customer = redCustomerDetails.find((c) => c.id === activeCustomer) ?? redCustomerDetails[0];
 
