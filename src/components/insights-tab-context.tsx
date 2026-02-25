@@ -3,10 +3,8 @@
 import { createContext, useCallback, useContext, useState } from "react";
 
 const TABS = [
-  { value: "myview", label: "My View" },
-  { value: "okrs", label: "OKRs" },
-  { value: "pulse", label: "Pulse" },
-  { value: "prodeng", label: "Prod/Eng" },
+  { value: "businessgoals", label: "Business Goals" },
+  { value: "product", label: "Product" },
   { value: "solutions", label: "Solutions" },
   { value: "cx", label: "CX" },
   { value: "sales", label: "Sales" },
@@ -27,7 +25,7 @@ interface InsightsTabContextValue {
 const InsightsTabContext = createContext<InsightsTabContextValue | null>(null);
 
 export function InsightsTabProvider({ children }: { children: React.ReactNode }) {
-  const [activeTab, setActiveTab] = useState<TabValue>("prodeng");
+  const [activeTab, setActiveTab] = useState<TabValue>("businessgoals");
   const [pinnedCharts, setPinnedCharts] = useState<Set<string>>(new Set());
 
   const togglePin = useCallback((chartId: string) => {
