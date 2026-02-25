@@ -1,24 +1,28 @@
 "use client";
 
 import { useInsightsTab } from "@/components/insights-tab-context";
-import { BusinessGoalsTab } from "./business-goals-tab";
+import { MyViewTab } from "./my-view-tab";
 import { SalesTab } from "./sales-tab";
 import { MarketingTab } from "./marketing-tab";
 import { CxTab } from "./cx-tab";
 import { SolutionsTab } from "./solutions-tab";
-import { ProductTab } from "./product-tab";
+import { ProdEngTab } from "./prodeng-tab";
+import { OkrsTab } from "./okrs-tab";
+import { PulseTab } from "./pulse-tab";
 
 export function InsightsTabContent() {
   const { activeTab } = useInsightsTab();
 
   return (
     <div className="w-full">
-      {activeTab === "businessgoals" && <BusinessGoalsTab />}
+      {activeTab === "myview" && <MyViewTab />}
+      {activeTab === "okrs" && <OkrsTab />}
+      {activeTab === "pulse" && <PulseTab />}
       {activeTab === "sales" && <SalesTab />}
       {activeTab === "marketing" && <MarketingTab />}
       {activeTab === "cx" && <CxTab />}
       {activeTab === "solutions" && <SolutionsTab />}
-      {activeTab === "product" && <ProductTab />}
+      {activeTab === "prodeng" && <ProdEngTab />}
     </div>
   );
 }

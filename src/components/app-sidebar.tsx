@@ -17,8 +17,9 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
-const COMPANY_TABS = ["businessgoals"] as const;
-const FUNCTION_TABS = ["marketing", "sales", "solutions", "cx", "product"] as const;
+const PERSONAL_TABS = ["myview"] as const;
+const COMPANY_TABS = ["okrs", "pulse"] as const;
+const TEAM_TABS = ["prodeng", "solutions", "cx", "sales", "marketing"] as const;
 
 export function AppSidebar() {
   const router = useRouter();
@@ -30,6 +31,7 @@ export function AppSidebar() {
   const handleTabClick = useCallback(
     (value: Parameters<typeof setActiveTab>[0]) => {
       setActiveTab(value);
+      // Write top-level tab to URL; clear CX sub-params when leaving CX
       const params = new URLSearchParams();
       params.set("tab", value);
       router.replace(`?${params.toString()}`, { scroll: false });
@@ -62,6 +64,25 @@ export function AppSidebar() {
       </SidebarHeader>
 
       <SidebarContent className="px-2">
+        {/* Personal */}
+        <SidebarGroup>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {PERSONAL_TABS.map((value) => (
+                <SidebarMenuItem key={value}>
+                  <SidebarMenuButton
+                    isActive={activeTab === value}
+                    onClick={() => handleTabClick(value)}
+                    className="cursor-pointer"
+                  >
+                    <span>{getTabLabel(value)}</span>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
         {/* Company */}
         <SidebarGroup>
           <SidebarGroupLabel className="text-sidebar-foreground font-semibold">Company</SidebarGroupLabel>
@@ -82,12 +103,12 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        {/* Function */}
+        {/* Teams */}
         <SidebarGroup>
-          <SidebarGroupLabel className="text-sidebar-foreground font-semibold">Function</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-sidebar-foreground font-semibold">Team</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {FUNCTION_TABS.map((value) => (
+              {TEAM_TABS.map((value) => (
                 <SidebarMenuItem key={value}>
                   <SidebarMenuButton
                     isActive={activeTab === value}
