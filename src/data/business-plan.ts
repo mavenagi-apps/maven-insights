@@ -371,7 +371,7 @@ const goal1Steps: Step[] = [
       },
     ],
   },
-  // Product Team step (fabricated)
+  // Product Team — Prioritize, Review, Ship
   {
     id: "g1-sp1",
     stepNumber: 6,
@@ -380,9 +380,9 @@ const goal1Steps: Step[] = [
     functionTab: "product",
     theme: "Roadmap Execution",
     title: "Prioritize, Review, and Ship Voice, Proactive, and On-Prem",
-    target: "PMs review AI-generated specs, prioritize with engineering, drive features to ship, and ensure GTM readiness",
+    target: "PMs review AI-generated specs, prioritize with engineering, and drive features to ship",
     description:
-      "The Product team owns the judgment calls that AI cannot make \u2014 deciding which features to prioritize, resolving trade-offs with engineering, ensuring shipped capabilities meet customer needs, and making all three product lines ready to sell. PMs conduct sprint reviews, validate AI-generated specs, maintain direct relationships with key customers, and own the GTM readiness checklist.",
+      "The Product team owns the judgment calls that AI cannot make \u2014 deciding which features to prioritize, resolving trade-offs with engineering, and ensuring shipped capabilities meet customer needs. PMs conduct sprint reviews, validate AI-generated specs, and maintain direct relationships with key customers.",
     completed: true,
     goalIds: ["goal-1", "goal-3"],
     subSteps: [
@@ -414,29 +414,46 @@ const goal1Steps: Step[] = [
         description:
           "Product team presents the weekly roadmap status to leadership, using the AI-generated cross-product blocker report as the foundation and adding strategic context and recommended prioritization decisions. This ensures leadership has real-time visibility into what is shipping and what is at risk.",
       },
+    ],
+  },
+  // Product Team — GTM Enablement
+  {
+    id: "g1-sp2",
+    stepNumber: 7,
+    owner: "team",
+    ownerName: "Product Team",
+    functionTab: "product",
+    theme: "GTM Enablement",
+    title: "GTM Enablement for Voice, Proactive, and On-Prem",
+    target: "Ensure all three products are sales-ready, demo-able, and customer-deployable",
+    description:
+      "The Product team ensures Voice, Proactive, and On-Prem are not just built but ready to sell \u2014 creating product one-pagers, approving demo environments, publishing deployment docs, and training Sales and Solutions on all three product lines.",
+    completed: false,
+    goalIds: ["goal-1", "goal-3"],
+    subSteps: [
       {
-        id: "g1-sp1-e",
+        id: "g1-sp2-a",
         text: "Create Voice product one-pager and sales enablement materials",
         completed: true,
         description:
           "Product team writes the Voice product one-pager positioning Maven's voice capabilities against IVR and competing CCaaS-native bots, and creates sales battle cards for key competitive situations. Materials are reviewed with AEs before the first Voice deals are pitched.",
       },
       {
-        id: "g1-sp1-f",
+        id: "g1-sp2-b",
         text: "Approve Proactive demo environments built by Solutions AI for accuracy",
         completed: false,
         description:
           "PMs review each Solutions AI-generated Proactive demo environment to confirm the trigger logic, campaign scenarios, and deflection metrics are accurate and on-roadmap. Any demo features that are not yet shipped are flagged and either removed or scheduled.",
       },
       {
-        id: "g1-sp1-g",
+        id: "g1-sp2-c",
         text: "Publish On-Prem deployment documentation and security questionnaire library",
         completed: false,
         description:
           "Product team publishes comprehensive On-Prem deployment docs covering air-gapped installation, SSO configuration, RBAC, and audit logging \u2014 and builds a reusable security questionnaire library for regulated-industry procurement processes. These assets are required to move On-Prem deals through security review.",
       },
       {
-        id: "g1-sp1-h",
+        id: "g1-sp2-d",
         text: "Host internal product training for Sales and Solutions on all three new product lines",
         completed: false,
         description:
@@ -931,7 +948,7 @@ const goal3Steps: Step[] = [
       },
     ],
   },
-  // Mirror of g1-sp1 Product Team step — shown in Goal 3 business-goals section only
+  // Mirror of g1-sp1 — Prioritize, Review, Ship (Goal 3 business-goals section only)
   {
     id: "g3-sp1-mirror",
     stepNumber: 1,
@@ -940,9 +957,9 @@ const goal3Steps: Step[] = [
     functionTab: "product",
     theme: "Roadmap Execution",
     title: "Prioritize, Review, and Ship Voice, Proactive, and On-Prem",
-    target: "PMs review AI-generated specs, prioritize with engineering, drive features to ship, and ensure GTM readiness",
+    target: "PMs review AI-generated specs, prioritize with engineering, and drive features to ship",
     description:
-      "The Product team owns the judgment calls that AI cannot make \u2014 deciding which features to prioritize, resolving trade-offs with engineering, ensuring shipped capabilities meet customer needs, and making all three product lines ready to sell. PMs conduct sprint reviews, validate AI-generated specs, maintain direct relationships with key customers, and own the GTM readiness checklist.",
+      "The Product team owns the judgment calls that AI cannot make \u2014 deciding which features to prioritize, resolving trade-offs with engineering, and ensuring shipped capabilities meet customer needs. PMs conduct sprint reviews, validate AI-generated specs, and maintain direct relationships with key customers.",
     completed: true,
     goalIds: ["goal-1", "goal-3"],
     isMirror: true,
@@ -975,29 +992,47 @@ const goal3Steps: Step[] = [
         description:
           "Product team presents the weekly roadmap status to leadership, using the AI-generated cross-product blocker report as the foundation and adding strategic context and recommended prioritization decisions. This ensures leadership has real-time visibility into what is shipping and what is at risk.",
       },
+    ],
+  },
+  // Mirror of g1-sp2 — GTM Enablement (Goal 3 business-goals section only)
+  {
+    id: "g3-sp2-mirror",
+    stepNumber: 2,
+    owner: "team",
+    ownerName: "Product Team",
+    functionTab: "product",
+    theme: "GTM Enablement",
+    title: "GTM Enablement for Voice, Proactive, and On-Prem",
+    target: "Ensure all three products are sales-ready, demo-able, and customer-deployable",
+    description:
+      "The Product team ensures Voice, Proactive, and On-Prem are not just built but ready to sell \u2014 creating product one-pagers, approving demo environments, publishing deployment docs, and training Sales and Solutions on all three product lines.",
+    completed: false,
+    goalIds: ["goal-1", "goal-3"],
+    isMirror: true,
+    subSteps: [
       {
-        id: "g1-sp1-e",
+        id: "g1-sp2-a",
         text: "Create Voice product one-pager and sales enablement materials",
         completed: true,
         description:
           "Product team writes the Voice product one-pager positioning Maven's voice capabilities against IVR and competing CCaaS-native bots, and creates sales battle cards for key competitive situations. Materials are reviewed with AEs before the first Voice deals are pitched.",
       },
       {
-        id: "g1-sp1-f",
+        id: "g1-sp2-b",
         text: "Approve Proactive demo environments built by Solutions AI for accuracy",
         completed: false,
         description:
           "PMs review each Solutions AI-generated Proactive demo environment to confirm the trigger logic, campaign scenarios, and deflection metrics are accurate and on-roadmap. Any demo features that are not yet shipped are flagged and either removed or scheduled.",
       },
       {
-        id: "g1-sp1-g",
+        id: "g1-sp2-c",
         text: "Publish On-Prem deployment documentation and security questionnaire library",
         completed: false,
         description:
           "Product team publishes comprehensive On-Prem deployment docs covering air-gapped installation, SSO configuration, RBAC, and audit logging \u2014 and builds a reusable security questionnaire library for regulated-industry procurement processes. These assets are required to move On-Prem deals through security review.",
       },
       {
-        id: "g1-sp1-h",
+        id: "g1-sp2-d",
         text: "Host internal product training for Sales and Solutions on all three new product lines",
         completed: false,
         description:
