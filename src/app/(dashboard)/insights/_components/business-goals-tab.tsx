@@ -11,7 +11,6 @@ import {
   Users,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useInsightsTab } from "@/components/insights-tab-context";
 import { SubStepSidebar } from "@/components/sub-step-sidebar";
 import {
   businessGoals,
@@ -224,13 +223,8 @@ function StepCard({
   onSubStepClick: (sub: SubStep, step: Step) => void;
 }) {
   const [expanded, setExpanded] = useState(false);
-  const { setActiveTab } = useInsightsTab();
   const isAi = step.owner === "ai";
   const completedSubs = step.subSteps.filter((s) => statusOverrides[s.id] ?? s.completed).length;
-
-  const navigateToFunction = () => {
-    setActiveTab(step.functionTab);
-  };
 
   return (
     <div
@@ -267,32 +261,20 @@ function StepCard({
           </span>
         )}
 
-        {/* Owner name (clickable to navigate) */}
-        <button
-          type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            navigateToFunction();
-          }}
+        {/* Owner name */}
+        <span
           className={cn(
-            "shrink-0 text-xs font-semibold hover:underline",
+            "shrink-0 text-xs font-semibold",
             isAi ? "text-purple-800" : "text-foreground/70",
           )}
         >
           {step.ownerName}
-        </button>
+        </span>
 
-        {/* Title (clickable to navigate) */}
-        <button
-          type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            navigateToFunction();
-          }}
-          className="min-w-0 flex-1 truncate text-sm font-medium text-gray-900 hover:underline"
-        >
+        {/* Title */}
+        <span className="min-w-0 flex-1 truncate text-sm font-medium text-gray-900">
           {step.title}
-        </button>
+        </span>
 
         {/* Completion pill */}
         <span
