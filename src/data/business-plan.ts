@@ -1365,6 +1365,43 @@ const goal3Steps: Step[] = [
     ],
   },
   {
+    id: "g3-s7",
+    stepNumber: 7,
+    owner: "ai",
+    ownerName: "Solutions AI",
+    functionTab: "solutions",
+    theme: "Demo Generation",
+    title: "Create Custom Demos for Voice and Proactive Expansions",
+    target: "Every expansion conversation supported by a tailored demo",
+    description:
+      "Solutions AI generates expansion-specific demos building on each customer\u2019s existing Maven deployment.",
+    completed: false,
+    goalIds: ["goal-3"],
+    subSteps: [
+      {
+        id: "g3-s7-a",
+        text: "Voice Expansion Demos (Thumbtack/ClickUp/Fairfax County/Clio/Exclaimer/Bamboo Health/TiVo \u2014 using existing knowledge sources)",
+        completed: true,
+        description:
+          "Solutions AI generates Voice expansion demos for seven accounts, building on each customer's existing Maven knowledge sources and chat deployment to show what their Voice experience would look and sound like. Demos use real knowledge base content for authentic interactions.",
+      },
+      {
+        id: "g3-s7-b",
+        text: "Proactive Expansion Demos (Practice Better/Runway/Handshake \u2014 using actual support use cases)",
+        completed: true,
+        description:
+          "Solutions AI generates Proactive expansion demos for three accounts, using their actual support ticket data to design trigger scenarios and campaign templates. Each demo shows proactive outreach handling the customer's most common preventable support queries.",
+      },
+      {
+        id: "g3-s7-c",
+        text: "Demo Delivery Runbook (talking points/objections/next steps per account)",
+        completed: false,
+        description:
+          "Solutions AI compiles a demo delivery runbook for each expansion account, including customized talking points, anticipated objections with rebuttals, and recommended next steps. The runbook equips Solutions engineers and CX managers to deliver compelling, consistent expansion demos.",
+      },
+    ],
+  },
+  {
     id: "g3-s8",
     stepNumber: 8,
     owner: "team",
