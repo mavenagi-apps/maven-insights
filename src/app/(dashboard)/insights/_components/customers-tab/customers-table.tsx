@@ -13,6 +13,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
+import { useColumnResize } from "@/hooks/use-column-resize";
 import { customers, type CustomerRow } from "@/data/mock-customers";
 
 // ---------------------------------------------------------------------------
@@ -127,6 +128,7 @@ const COLUMNS: { key: SortKey; label: string }[] = [
 export function CustomersTable() {
   const [sortKey, setSortKey] = useState<SortKey>("arr");
   const [sortDir, setSortDir] = useState<SortDir>("desc");
+  const { widths, startResize } = useColumnResize(COLUMNS.length);
 
   const handleSort = (key: SortKey) => {
     if (sortKey === key) {
@@ -171,8 +173,12 @@ export function CustomersTable() {
       <Table>
         <TableHeader>
           <TableRow className="border-t border-border-subtle hover:bg-transparent">
-            {COLUMNS.map((col) => (
-              <TableHead key={String(col.key)} className="h-10 px-6">
+            {COLUMNS.map((col, i) => (
+              <TableHead
+                key={String(col.key)}
+                className="relative h-10 px-6"
+                style={widths[i] !== undefined ? { width: widths[i], minWidth: widths[i] } : undefined}
+              >
                 <button
                   className="flex items-center gap-1 text-xs font-medium text-muted-foreground"
                   onClick={() => handleSort(col.key)}
@@ -180,6 +186,10 @@ export function CustomersTable() {
                   {col.label}
                   <ArrowUpDown className="h-3 w-3" />
                 </button>
+                <div
+                  onMouseDown={(e) => startResize(i, e)}
+                  className="absolute right-0 top-0 h-full w-1 cursor-col-resize hover:bg-primary/20 active:bg-primary/40"
+                />
               </TableHead>
             ))}
           </TableRow>

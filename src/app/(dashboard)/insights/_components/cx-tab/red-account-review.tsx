@@ -14,6 +14,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
+import { useColumnResize } from "@/hooks/use-column-resize";
 import { redCustomerDetails } from "@/data/red-customers-detail";
 import type { RedCustomerDetail } from "@/data/red-customers-detail";
 
@@ -51,6 +52,8 @@ interface CustomerDetailProps {
 }
 
 function CustomerOverviewTable({ customer }: CustomerDetailProps) {
+  const { widths, startResize } = useColumnResize(2);
+
   return (
     <div className="rounded-xl border border-border-subtle bg-card">
       <div className="flex items-start justify-between px-6 pt-6 pb-4">
@@ -78,6 +81,7 @@ function CustomerOverviewTable({ customer }: CustomerDetailProps) {
 }
 
 function GongCallsTable({ customer }: CustomerDetailProps) {
+  const { widths, startResize } = useColumnResize(4);
   const hasCalls = customer.gongCalls.length > 0;
 
   return (
@@ -124,10 +128,22 @@ function GongCallsTable({ customer }: CustomerDetailProps) {
           <Table>
             <TableHeader>
               <TableRow className="border-t border-border-subtle hover:bg-transparent">
-                <TableHead className="h-10 px-6 text-xs font-medium text-muted-foreground">Date</TableHead>
-                <TableHead className="h-10 px-6 text-xs font-medium text-muted-foreground">Title</TableHead>
-                <TableHead className="h-10 px-6 text-xs font-medium text-muted-foreground">Duration</TableHead>
-                <TableHead className="h-10 px-6 text-xs font-medium text-muted-foreground">Key Points</TableHead>
+                <TableHead className="relative h-10 px-6 text-xs font-medium text-muted-foreground" style={widths[0] !== undefined ? { width: widths[0], minWidth: widths[0] } : undefined}>
+                  Date
+                  <div onMouseDown={(e) => startResize(0, e)} className="absolute right-0 top-0 h-full w-1 cursor-col-resize hover:bg-primary/20 active:bg-primary/40" />
+                </TableHead>
+                <TableHead className="relative h-10 px-6 text-xs font-medium text-muted-foreground" style={widths[1] !== undefined ? { width: widths[1], minWidth: widths[1] } : undefined}>
+                  Title
+                  <div onMouseDown={(e) => startResize(1, e)} className="absolute right-0 top-0 h-full w-1 cursor-col-resize hover:bg-primary/20 active:bg-primary/40" />
+                </TableHead>
+                <TableHead className="relative h-10 px-6 text-xs font-medium text-muted-foreground" style={widths[2] !== undefined ? { width: widths[2], minWidth: widths[2] } : undefined}>
+                  Duration
+                  <div onMouseDown={(e) => startResize(2, e)} className="absolute right-0 top-0 h-full w-1 cursor-col-resize hover:bg-primary/20 active:bg-primary/40" />
+                </TableHead>
+                <TableHead className="relative h-10 px-6 text-xs font-medium text-muted-foreground" style={widths[3] !== undefined ? { width: widths[3], minWidth: widths[3] } : undefined}>
+                  Key Points
+                  <div onMouseDown={(e) => startResize(3, e)} className="absolute right-0 top-0 h-full w-1 cursor-col-resize hover:bg-primary/20 active:bg-primary/40" />
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -148,6 +164,7 @@ function GongCallsTable({ customer }: CustomerDetailProps) {
 }
 
 function LinearIssuesTable({ customer }: CustomerDetailProps) {
+  const { widths, startResize } = useColumnResize(5);
   const hasIssues = customer.linearIssues.length > 0;
 
   return (
@@ -194,11 +211,26 @@ function LinearIssuesTable({ customer }: CustomerDetailProps) {
           <Table>
             <TableHeader>
               <TableRow className="border-t border-border-subtle hover:bg-transparent">
-                <TableHead className="h-10 px-6 text-xs font-medium text-muted-foreground">ID</TableHead>
-                <TableHead className="h-10 px-6 text-xs font-medium text-muted-foreground">Title</TableHead>
-                <TableHead className="h-10 px-6 text-xs font-medium text-muted-foreground">Status</TableHead>
-                <TableHead className="h-10 px-6 text-xs font-medium text-muted-foreground">Priority</TableHead>
-                <TableHead className="h-10 px-6 text-xs font-medium text-muted-foreground">Assignee</TableHead>
+                <TableHead className="relative h-10 px-6 text-xs font-medium text-muted-foreground" style={widths[0] !== undefined ? { width: widths[0], minWidth: widths[0] } : undefined}>
+                  ID
+                  <div onMouseDown={(e) => startResize(0, e)} className="absolute right-0 top-0 h-full w-1 cursor-col-resize hover:bg-primary/20 active:bg-primary/40" />
+                </TableHead>
+                <TableHead className="relative h-10 px-6 text-xs font-medium text-muted-foreground" style={widths[1] !== undefined ? { width: widths[1], minWidth: widths[1] } : undefined}>
+                  Title
+                  <div onMouseDown={(e) => startResize(1, e)} className="absolute right-0 top-0 h-full w-1 cursor-col-resize hover:bg-primary/20 active:bg-primary/40" />
+                </TableHead>
+                <TableHead className="relative h-10 px-6 text-xs font-medium text-muted-foreground" style={widths[2] !== undefined ? { width: widths[2], minWidth: widths[2] } : undefined}>
+                  Status
+                  <div onMouseDown={(e) => startResize(2, e)} className="absolute right-0 top-0 h-full w-1 cursor-col-resize hover:bg-primary/20 active:bg-primary/40" />
+                </TableHead>
+                <TableHead className="relative h-10 px-6 text-xs font-medium text-muted-foreground" style={widths[3] !== undefined ? { width: widths[3], minWidth: widths[3] } : undefined}>
+                  Priority
+                  <div onMouseDown={(e) => startResize(3, e)} className="absolute right-0 top-0 h-full w-1 cursor-col-resize hover:bg-primary/20 active:bg-primary/40" />
+                </TableHead>
+                <TableHead className="relative h-10 px-6 text-xs font-medium text-muted-foreground" style={widths[4] !== undefined ? { width: widths[4], minWidth: widths[4] } : undefined}>
+                  Assignee
+                  <div onMouseDown={(e) => startResize(4, e)} className="absolute right-0 top-0 h-full w-1 cursor-col-resize hover:bg-primary/20 active:bg-primary/40" />
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useColumnResize } from "@/hooks/use-column-resize";
 import { ArrowUpDown, Download, Maximize2, SlidersHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PinButton } from "@/components/pin-button";
@@ -27,6 +28,7 @@ const COLUMNS: { key: keyof SdrPipelineRow; label: string; sortable: boolean }[]
 ];
 
 export function SdrPipelineTable() {
+  const { widths, startResize } = useColumnResize(COLUMNS.length);
   const [sortColumn, setSortColumn] = useState<string | null>(null);
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
 
@@ -92,7 +94,11 @@ export function SdrPipelineTable() {
         <TableHeader>
           <TableRow className="border-t border-border-subtle hover:bg-transparent">
             {COLUMNS.map((col, i) => (
-              <TableHead key={`${col.key}-${i}`} className="h-10 px-6">
+              <TableHead
+                key={`${col.key}-${i}`}
+                className="relative h-10 px-6"
+                style={widths[i] !== undefined ? { width: widths[i], minWidth: widths[i] } : undefined}
+              >
                 {col.sortable ? (
                   <button
                     className="flex items-center gap-1 text-xs font-medium text-muted-foreground"
@@ -104,6 +110,10 @@ export function SdrPipelineTable() {
                 ) : (
                   <span className="text-xs font-medium text-muted-foreground">{col.label}</span>
                 )}
+                <div
+                  onMouseDown={(e) => startResize(i, e)}
+                  className="absolute right-0 top-0 h-full w-1 cursor-col-resize hover:bg-primary/20 active:bg-primary/40"
+                />
               </TableHead>
             ))}
           </TableRow>
