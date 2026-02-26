@@ -29,11 +29,11 @@ function formatCurrency(value: number): string {
 const COLUMNS = [
   { key: "owner", label: "Owner", sortable: true },
   { key: "dealName", label: "Deal Name", sortable: true },
+  { key: "team", label: "Team", sortable: true },
   { key: "forecastCategory", label: "Forecast Category", sortable: true },
   { key: "stage", label: "Stage", sortable: true },
   { key: "closeDate", label: "Close Date", sortable: true },
   { key: "amount", label: "Amount", sortable: true },
-  { key: "nextSteps", label: "Next Steps", sortable: false },
 ] as const;
 
 export function OpenDealsTable() {
@@ -134,15 +134,13 @@ export function OpenDealsTable() {
           {sortedDeals.map((deal, index) => (
             <TableRow key={index}>
               <TableCell className="px-6 py-4 text-sm">{deal.owner}</TableCell>
-              <TableCell className="px-6 py-4 text-sm">{deal.dealName}</TableCell>
+              <TableCell className="px-6 py-4 text-sm font-medium">{deal.dealName}</TableCell>
+              <TableCell className="px-6 py-4 text-sm">{deal.team}</TableCell>
               <TableCell className="px-6 py-4 text-sm">{deal.forecastCategory}</TableCell>
               <TableCell className="px-6 py-4 text-sm">{deal.stage}</TableCell>
               <TableCell className="px-6 py-4 text-sm tabular-nums">{deal.closeDate}</TableCell>
               <TableCell className="px-6 py-4 text-sm tabular-nums">
                 {formatCurrency(deal.amount)}
-              </TableCell>
-              <TableCell className="px-6 py-4 text-sm max-w-[300px] truncate">
-                {deal.nextSteps.split("\n")[0]}
               </TableCell>
             </TableRow>
           ))}
