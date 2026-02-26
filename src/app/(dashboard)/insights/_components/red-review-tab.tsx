@@ -6,7 +6,7 @@ export function RedReviewTab() {
       <div>
         <h2 className="text-xl font-semibold text-foreground">Red Account Review</h2>
         <p className="mt-1 text-sm text-muted-foreground">
-          Detailed review of at-risk accounts — analysis, Gong calls, and open issues.
+          Detailed review of at-risk accounts.
         </p>
       </div>
       <RedAccountReview />
