@@ -9,6 +9,8 @@ import { SolutionsTab } from "./solutions-tab";
 import { ProdEngTab } from "./prodeng-tab";
 import { OkrsTab } from "./okrs-tab";
 import { PulseTab } from "./pulse-tab";
+import { CustomersTab } from "./customers-tab";
+import { RedReviewTab } from "./red-review-tab";
 
 export function InsightsTabContent() {
   const { activeTab } = useInsightsTab();
@@ -23,6 +25,8 @@ export function InsightsTabContent() {
       {activeTab === "cx" && <CxTab />}
       {activeTab === "solutions" && <SolutionsTab />}
       {activeTab === "prodeng" && <ProdEngTab />}
+      {activeTab === "customers" && <CustomersTab />}
+      {activeTab === "redreview" && <RedReviewTab />}
     </div>
   );
 }

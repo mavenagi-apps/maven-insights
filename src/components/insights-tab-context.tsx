@@ -11,6 +11,8 @@ const TABS = [
   { value: "cx", label: "CX" },
   { value: "sales", label: "Sales" },
   { value: "marketing", label: "Marketing" },
+  { value: "customers", label: "Customers" },
+  { value: "redreview", label: "Red Review" },
 ] as const;
 
 type TabValue = (typeof TABS)[number]["value"];

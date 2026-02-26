@@ -20,6 +20,7 @@ import {
 const PERSONAL_TABS = ["myview"] as const;
 const COMPANY_TABS = ["okrs", "pulse"] as const;
 const TEAM_TABS = ["prodeng", "solutions", "cx", "sales", "marketing"] as const;
+const CUSTOMERS_TABS = ["customers", "redreview"] as const;
 
 export function AppSidebar() {
   const router = useRouter();
@@ -109,6 +110,26 @@ export function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
               {TEAM_TABS.map((value) => (
+                <SidebarMenuItem key={value}>
+                  <SidebarMenuButton
+                    isActive={activeTab === value}
+                    onClick={() => handleTabClick(value)}
+                    className="cursor-pointer"
+                  >
+                    <span>{getTabLabel(value)}</span>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        {/* Customers */}
+        <SidebarGroup>
+          <SidebarGroupLabel className="text-sidebar-foreground font-bold">Customers</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {CUSTOMERS_TABS.map((value) => (
                 <SidebarMenuItem key={value}>
                   <SidebarMenuButton
                     isActive={activeTab === value}
