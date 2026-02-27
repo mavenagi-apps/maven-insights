@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
 import { useColumnResize } from "@/hooks/use-column-resize";
-import { customers, type CustomerRow } from "@/data/mock-customers";
+import { customers, getCustomerPhase, type CustomerPhase, type CustomerRow } from "@/data/mock-customers";
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -82,6 +82,13 @@ function activityInfo(gongCalls: number, lastActivity: string | null): {
   return { label: `Active (${gongCalls}c)`, dotColor: "bg-emerald-500", textColor: "text-emerald-700" };
 }
 
+function onboardingStatusColors(status: CustomerRow["onboardingStatus"]): string {
+  if (status === "On Track") return "bg-[#dcfce7] text-[#15803d]";
+  if (status === "At Risk") return "bg-[#fef9c3] text-[#854d0e]";
+  if (status === "Off Track") return "bg-[#fee2e2] text-[#dc2626]";
+  return "bg-muted text-muted-foreground";
+}
+
 // ---------------------------------------------------------------------------
 // Sort
 // ---------------------------------------------------------------------------
@@ -106,10 +113,10 @@ function sortRows(rows: CustomerRow[], key: SortKey, dir: SortDir): CustomerRow[
 }
 
 // ---------------------------------------------------------------------------
-// Column config (order: Customer, ARR, Health, Usage, Segment, CX Owner, Activity, Contract End, Industry)
+// Column configs per phase
 // ---------------------------------------------------------------------------
 
-const COLUMNS: { key: SortKey; label: string }[] = [
+const BASE_COLUMNS: { key: SortKey; label: string }[] = [
   { key: "name", label: "Customer" },
   { key: "arr", label: "ARR" },
   { key: "health", label: "Health" },
@@ -121,14 +128,40 @@ const COLUMNS: { key: SortKey; label: string }[] = [
   { key: "industry", label: "Industry" },
 ];
 
+const ONBOARDING_COLUMNS: { key: SortKey; label: string }[] = [
+  { key: "name", label: "Customer" },
+  { key: "arr", label: "ARR" },
+  { key: "health", label: "Health" },
+  { key: "onboardingStatus", label: "Onboarding Status" },
+  { key: "usagePct", label: "Usage" },
+  { key: "segment", label: "Segment" },
+  { key: "cxOwner", label: "CX Owner" },
+  { key: "gongCalls30d", label: "Activity (30D)" },
+  { key: "industry", label: "Industry" },
+];
+
+// ---------------------------------------------------------------------------
+// Phase tab config
+// ---------------------------------------------------------------------------
+
+const PHASE_TABS: { label: string; value: CustomerPhase }[] = [
+  { label: "All", value: "All" },
+  { label: "Onboarding", value: "Onboarding" },
+  { label: "Renewals", value: "Renewal" },
+  { label: "Expansion", value: "Expansion" },
+];
+
 // ---------------------------------------------------------------------------
 // Main component
 // ---------------------------------------------------------------------------
 
 export function CustomersTable() {
+  const [phase, setPhase] = useState<CustomerPhase>("All");
   const [sortKey, setSortKey] = useState<SortKey>("arr");
   const [sortDir, setSortDir] = useState<SortDir>("desc");
-  const { widths, startResize } = useColumnResize(COLUMNS.length);
+
+  const columns = phase === "Onboarding" ? ONBOARDING_COLUMNS : BASE_COLUMNS;
+  const { widths, startResize } = useColumnResize(columns.length);
 
   const handleSort = (key: SortKey) => {
     if (sortKey === key) {
@@ -139,7 +172,24 @@ export function CustomersTable() {
     }
   };
 
-  const rows = sortRows(customers, sortKey, sortDir);
+  const filtered = phase === "All"
+    ? customers
+    : customers.filter((c) => getCustomerPhase(c) === phase);
+
+  const rows = sortRows(filtered, sortKey, sortDir);
+
+  // Counts for tab badges
+  const onboardingCount = customers.filter((c) => getCustomerPhase(c) === "Onboarding").length;
+  const renewalCount = customers.filter((c) => getCustomerPhase(c) === "Renewal").length;
+  const expansionCount = customers.filter((c) => getCustomerPhase(c) === "Expansion").length;
+
+  function tabCount(value: CustomerPhase): number | null {
+    if (value === "All") return null;
+    if (value === "Onboarding") return onboardingCount;
+    if (value === "Renewal") return renewalCount;
+    if (value === "Expansion") return expansionCount;
+    return null;
+  }
 
   return (
     <div className="rounded-xl border border-border-subtle bg-card">
@@ -149,10 +199,45 @@ export function CustomersTable() {
         <PinButton chartId="customers-table" />
       </div>
 
+      {/* Phase sub-tabs */}
+      <div className="flex items-center gap-0 px-6 pt-3 pb-0 border-b border-border-subtle">
+        {PHASE_TABS.map((tab) => {
+          const count = tabCount(tab.value);
+          const isActive = phase === tab.value;
+          return (
+            <button
+              key={tab.value}
+              onClick={() => setPhase(tab.value)}
+              className={cn(
+                "relative flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium transition-colors",
+                "focus-visible:outline-none",
+                isActive
+                  ? "text-primary border-b-2 border-primary -mb-px"
+                  : "text-muted-foreground hover:text-foreground border-b-2 border-transparent -mb-px"
+              )}
+            >
+              {tab.label}
+              {count !== null && (
+                <span
+                  className={cn(
+                    "inline-flex items-center justify-center rounded-full px-1.5 py-0.5 text-[11px] font-semibold leading-none min-w-[20px]",
+                    isActive
+                      ? "bg-primary/10 text-primary"
+                      : "bg-muted text-muted-foreground"
+                  )}
+                >
+                  {count}
+                </span>
+              )}
+            </button>
+          );
+        })}
+      </div>
+
       {/* Toolbar */}
       <div className="flex items-center justify-between px-6 py-4">
         <div className="flex items-center gap-3">
-          <span className="text-sm text-muted-foreground">{customers.length} customers</span>
+          <span className="text-sm text-muted-foreground">{rows.length} customers</span>
           <Button variant="outline" size="sm" className="h-8 gap-1.5 text-sm font-normal">
             <Download className="h-3.5 w-3.5" />
             Download
@@ -173,7 +258,7 @@ export function CustomersTable() {
       <Table>
         <TableHeader>
           <TableRow className="border-t border-border-subtle hover:bg-transparent">
-            {COLUMNS.map((col, i) => (
+            {columns.map((col, i) => (
               <TableHead
                 key={String(col.key)}
                 className="relative h-10 px-6"
@@ -200,6 +285,64 @@ export function CustomersTable() {
             const days = daysUntil(row.contractEnd);
             const activity = activityInfo(row.gongCalls30d, row.lastActivity);
 
+            if (phase === "Onboarding") {
+              return (
+                <TableRow key={row.name}>
+                  <TableCell className="px-6 py-4 text-sm font-semibold text-foreground max-w-[160px] truncate">
+                    {row.name}
+                  </TableCell>
+                  <TableCell className="px-6 py-4 text-sm tabular-nums font-semibold text-foreground whitespace-nowrap">
+                    {formatArr(row.arr)}
+                  </TableCell>
+                  <TableCell className="px-6 py-4 text-sm">
+                    <span className={cn("inline-flex items-center rounded-md px-2.5 py-0.5 text-xs font-semibold", healthBadgeColors(row.health))}>
+                      {row.health ?? "—"}
+                    </span>
+                  </TableCell>
+                  <TableCell className="px-6 py-4 text-sm">
+                    {row.onboardingStatus ? (
+                      <span className={cn("inline-flex items-center rounded-md px-2.5 py-0.5 text-xs font-semibold", onboardingStatusColors(row.onboardingStatus))}>
+                        {row.onboardingStatus}
+                      </span>
+                    ) : (
+                      <span className="text-xs text-muted-foreground">—</span>
+                    )}
+                  </TableCell>
+                  <TableCell className="px-6 py-4 text-sm">
+                    {row.usagePct === null ? (
+                      <span className="text-xs text-muted-foreground italic">No data</span>
+                    ) : (
+                      <div className="flex items-center gap-2 min-w-[120px]">
+                        <div className="relative h-2 w-20 rounded-full bg-gray-200 overflow-hidden">
+                          <div className={cn("h-full rounded-full", usageBarColor(row.usagePct))} style={{ width: `${Math.min(row.usagePct, 100)}%` }} />
+                        </div>
+                        <span className={cn("text-xs font-medium tabular-nums w-9 text-right", row.usagePct < 25 ? "text-red-600" : row.usagePct < 60 ? "text-amber-600" : "text-emerald-700")}>
+                          {Math.round(row.usagePct)}%
+                        </span>
+                      </div>
+                    )}
+                  </TableCell>
+                  <TableCell className="px-6 py-4 text-sm">
+                    <span className={cn("inline-flex items-center rounded-md px-2 py-0.5 text-[11px] font-bold", segmentColors(seg))}>
+                      {seg}
+                    </span>
+                  </TableCell>
+                  <TableCell className="px-6 py-4 text-sm text-foreground whitespace-nowrap">
+                    {row.cxOwner ?? "—"}
+                  </TableCell>
+                  <TableCell className="px-6 py-4 text-sm">
+                    <div className="flex items-center gap-1.5">
+                      <span className={cn("h-2 w-2 rounded-full shrink-0", activity.dotColor)} />
+                      <span className={cn("text-xs font-medium whitespace-nowrap", activity.textColor)}>{activity.label}</span>
+                    </div>
+                  </TableCell>
+                  <TableCell className="px-6 py-4 text-sm text-muted-foreground whitespace-nowrap">
+                    {row.industry ?? "—"}
+                  </TableCell>
+                </TableRow>
+              );
+            }
+
             return (
               <TableRow key={row.name}>
                 {/* Customer */}
@@ -214,12 +357,7 @@ export function CustomersTable() {
 
                 {/* Health */}
                 <TableCell className="px-6 py-4 text-sm">
-                  <span
-                    className={cn(
-                      "inline-flex items-center rounded-md px-2.5 py-0.5 text-xs font-semibold",
-                      healthBadgeColors(row.health)
-                    )}
-                  >
+                  <span className={cn("inline-flex items-center rounded-md px-2.5 py-0.5 text-xs font-semibold", healthBadgeColors(row.health))}>
                     {row.health ?? "—"}
                   </span>
                 </TableCell>
@@ -239,11 +377,7 @@ export function CustomersTable() {
                       <span
                         className={cn(
                           "text-xs font-medium tabular-nums w-9 text-right",
-                          row.usagePct < 25
-                            ? "text-red-600"
-                            : row.usagePct < 60
-                              ? "text-amber-600"
-                              : "text-emerald-700"
+                          row.usagePct < 25 ? "text-red-600" : row.usagePct < 60 ? "text-amber-600" : "text-emerald-700"
                         )}
                       >
                         {Math.round(row.usagePct)}%
@@ -254,12 +388,7 @@ export function CustomersTable() {
 
                 {/* Segment */}
                 <TableCell className="px-6 py-4 text-sm">
-                  <span
-                    className={cn(
-                      "inline-flex items-center rounded-md px-2 py-0.5 text-[11px] font-bold",
-                      segmentColors(seg)
-                    )}
-                  >
+                  <span className={cn("inline-flex items-center rounded-md px-2 py-0.5 text-[11px] font-bold", segmentColors(seg))}>
                     {seg}
                   </span>
                 </TableCell>
@@ -281,20 +410,11 @@ export function CustomersTable() {
 
                 {/* Contract End */}
                 <TableCell className="px-6 py-4 text-sm whitespace-nowrap">
-                  <span
-                    className={cn(
-                      days !== null && days < 90 ? "text-red-600 font-semibold" : "text-foreground"
-                    )}
-                  >
+                  <span className={cn(days !== null && days < 90 ? "text-red-600 font-semibold" : "text-foreground")}>
                     {formatDate(row.contractEnd)}
                   </span>
                   {days !== null && (
-                    <span
-                      className={cn(
-                        "ml-1.5 text-xs font-medium",
-                        days < 0 ? "text-red-500" : days < 90 ? "text-red-500" : "text-muted-foreground"
-                      )}
-                    >
+                    <span className={cn("ml-1.5 text-xs font-medium", days < 0 ? "text-red-500" : days < 90 ? "text-red-500" : "text-muted-foreground")}>
                       ({days < 0 ? `${Math.abs(days)}d ago` : `${days}d`})
                     </span>
                   )}
